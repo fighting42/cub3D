@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:31 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2022/07/08 14:59:46 by yejinkim          #+#    #+#             */
+/*   Updated: 2022/07/12 17:38:14 by yejinkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main()
+size_t	ft_strlen(const char *s)
 {
-	// mlx test
-	void *mlx_ptr;
-	void *win_ptr;
+	size_t	i;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
-	// mlx test
-	return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

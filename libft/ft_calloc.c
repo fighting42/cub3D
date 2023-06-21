@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:31 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2022/07/11 17:41:34 by yejinkim          #+#    #+#             */
+/*   Updated: 2022/07/19 16:01:46 by yejinkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main()
+void	*ft_calloc(size_t count, size_t size)
 {
-	// mlx test
-	void *mlx_ptr;
-	void *win_ptr;
+	unsigned char	*p;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
-	// mlx test
-	return (0);
+	p = (unsigned char *)malloc(count * size);
+	if (!p)
+		return (0);
+	ft_bzero(p, (count * size));
+	return ((void *)p);
 }

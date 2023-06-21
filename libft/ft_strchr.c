@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:31 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2022/07/08 16:03:18 by yejinkim          #+#    #+#             */
+/*   Updated: 2022/07/18 13:46:14 by yejinkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main()
+char	*ft_strchr(const char *s, int c)
 {
-	// mlx test
-	void *mlx_ptr;
-	void *win_ptr;
+	int	i;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
-	// mlx test
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
 	return (0);
 }

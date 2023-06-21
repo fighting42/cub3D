@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:31 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2022/07/11 19:33:19 by yejinkim          #+#    #+#             */
+/*   Updated: 2022/07/19 16:45:29 by yejinkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main()
+char	*ft_strdup(const char *s1)
 {
-	// mlx test
-	void *mlx_ptr;
-	void *win_ptr;
+	int		i;
+	char	*tmp;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
-	// mlx test
-	return (0);
+	i = 0;
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!tmp)
+		return (0);
+	while (s1[i])
+	{
+		tmp[i] = s1[i];
+		i++;
+	}
+	tmp[i] = '\0';
+	return (tmp);
 }

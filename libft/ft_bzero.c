@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:31 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2022/07/11 16:12:11 by yejinkim          #+#    #+#             */
+/*   Updated: 2022/08/03 16:48:48 by yejinkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main()
+void	ft_bzero(void *s, size_t n)
 {
-	// mlx test
-	void *mlx_ptr;
-	void *win_ptr;
+	size_t			i;
+	unsigned char	*tmp;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
-	// mlx test
-	return (0);
+	i = 0;
+	tmp = (unsigned char *)s;
+	while (i < n)
+	{
+		tmp[i] = 0;
+		i++;
+	}
 }

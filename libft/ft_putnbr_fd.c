@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:31 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2022/07/12 16:41:19 by yejinkim          #+#    #+#             */
+/*   Updated: 2022/07/12 17:37:52 by yejinkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main()
+void	ft_putnbr_fd(int n, int fd)
 {
-	// mlx test
-	void *mlx_ptr;
-	void *win_ptr;
+	long	nb;
+	char	tmp;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
-	// mlx test
-	return (0);
+	nb = n;
+	if (nb < 0)
+	{
+		write(fd, "-", 1);
+		nb *= -1;
+	}
+	if (nb > 9)
+		ft_putnbr_fd(nb / 10, fd);
+	tmp = (nb % 10) + '0';
+	write(fd, &tmp, 1);
 }
