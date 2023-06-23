@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/21 21:40:29 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/23 10:34:50 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,18 @@
 # define KEY_W 13
 # define KEY_ESC 53
 # define KEY_EXIT 17
+# define WIDTH 640
+# define HEIGHT 480
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
+# define MAPWIDTH 24
+# define MAPHEIGHT 24
 
 typedef struct s_img
 {
 	int		width;
 	int		height;
+	int		*data;
 }	t_img;
 
 typedef struct s_setting
@@ -53,6 +60,13 @@ typedef struct s_info
 	void		*win;
 	double		pos_x;
 	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		movespeed;
+	double		rotspeed;
+	int			buf[WIDTH][HEIGHT];
 }	t_info;
 
 #endif
