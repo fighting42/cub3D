@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/24 22:13:21 by yejinkim         ###   ########seoul.kr  */
+/*   Created: 2023/06/24 16:26:11 by yejinkim          #+#    #+#             */
+/*   Updated: 2023/06/24 19:44:46 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-void	print_error(void)
+void	init_setting(t_setting *setting)
 {
-	printf("Error\n");
-	exit(0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_setting	setting;
-
-	if (argc != 2)
-		print_error();
-	parsing(&setting, argv[1]);
-	
-	// mlx test
-	// void *mlx_ptr = mlx_init();
-	// void *win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "mlx 42");
-	// mlx_loop(mlx_ptr);
-	// mlx test
-	return (0);
+	setting->east = NULL;
+	setting->west = NULL;
+	setting->south = NULL;
+	setting->north = NULL;
+	setting->floor[0] = -1;
+	setting->ceil[0] = -1;
 }

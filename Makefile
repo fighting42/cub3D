@@ -6,17 +6,20 @@
 #    By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 20:25:24 by yejinkim          #+#    #+#              #
-#    Updated: 2023/06/21 21:47:16 by yejinkim         ###   ########seoul.kr   #
+#    Updated: 2023/06/24 22:15:57 by yejinkim         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 MLXFLAGS = -L ./mlx -lmlx -framework OpenGL -framework Appkit
 
-SRCS =  main.c 
+SRCS =  main.c \
+		parsing/parsing.c \
+		parsing/init.c \
+		parsing/get_next_line.c 
 
 OBJS = $(SRCS:.c=.o)
 

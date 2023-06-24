@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/23 10:34:50 by dapark           ###   ########.fr       */
+/*   Updated: 2023/06/24 20:00:29 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 
+# define BUFFER_SIZE 42
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
@@ -43,10 +44,10 @@ typedef struct s_img
 
 typedef struct s_setting
 {
-	char	*east;
-	char	*west;
-	char	*south;
 	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 	int		floor[3];
 	int		ceil[3];
 }	t_setting;
@@ -68,5 +69,10 @@ typedef struct s_info
 	double		rotspeed;
 	int			buf[WIDTH][HEIGHT];
 }	t_info;
+
+void	print_error(void);
+void	parsing(t_setting *setting, char *file);
+void	init_setting(t_setting *setting);
+char	*get_next_line(int fd);
 
 #endif

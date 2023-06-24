@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:26:25 by dapark            #+#    #+#             */
-/*   Updated: 2023/06/23 10:34:56 by dapark           ###   ########.fr       */
+/*   Updated: 2023/06/24 16:20:41 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3d.h"
 
 void	keypress_WD(int keycode, t_info *info)
 {
