@@ -6,76 +6,72 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/24 22:10:46 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/25 16:20:58 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	*remove_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	return (&str[i]);
-}
-
-char	*remove_space_back(char *str)
-{
-	int	i;
-
-	i = ft_strlen(str) - 1;
-	while (str[i] == ' ' || str[i] == '\n' || (str[i] >= 9 && str[i] <= 13))
-		i--;
-	str[++i] = 0;
-	return (str);
-}
-
-char	*check_setting(char *var, char *str)
+char	*parse_texture(char *var, char *str)
 {
 	char	*tmp;
 
 	if (var)
-		print_error();
+		print_error(); // 중복 요소 에러
 	tmp = remove_space(&str[2]);
 	tmp = remove_space_back(tmp);
 	return (ft_strdup(tmp));
 }
 
-int	*check_setting_num(char *str)
+int	parse_color(int var, char *str)
 {
 	char	*tmp;
 	char	**ret;
 	
-
+	if (var >= 0)
+		print_error(); // 중복 요소 에러
 	tmp = remove_space(&str[1]);
 	ret = ft_split(tmp, ',');
-	//printf("ret: %s %s %s %s\n", ret[0], ret[1], ret[2], ret[3]);
-	return (0);
+	return (rgb_to_int(ret));
 }
 
-void	check_element(t_setting *setting, char *line)
+void	parse_line(t_data *data, char *line)
 {
 	char	*str;
 
 	str = remove_space(line);
 	if (!ft_strncmp(str, "NO ", 3))
-		setting->north = check_setting(setting->north, str);
+		data->north = parse_texture(data->north, str);
 	else if (!ft_strncmp(str, "SO ", 3))
-		setting->south = check_setting(setting->south, str);
+		data->south = parse_texture(data->south, str);
 	else if (!ft_strncmp(str, "WE ", 3))
-		setting->west = check_setting(setting->west, str);
+		data->west = parse_texture(data->west, str);
 	else if (!ft_strncmp(str, "EA ", 3))
-		setting->east = check_setting(setting->east, str);
+		data->east = parse_texture(data->east, str);
 	else if (!ft_strncmp(str, "F ", 2))
-		check_setting_num(str);
+		data->floor = parse_color(data->floor, str);
 	else if (!ft_strncmp(str, "C ", 2))
-		check_setting_num(str);
+		data->ceil = parse_color(data->ceil, str);
 }
 
-void	parsing(t_setting *setting, char *file)
+void	check_data(t_data *data)
+{
+	// 요소 없음 에러
+	if (!data->north)
+		print_error();
+	if (!data->south)
+		print_error();
+	if (!data->west)
+		print_error();
+	if (!data->east)
+		print_error();
+	if (data->floor < 0)
+		print_error();
+	if (data->ceil < 0)
+		print_error();
+}
+
+void	parsing(t_data *data, char *file)
 {
 	int		i;
 	int		fd;
@@ -83,13 +79,13 @@ void	parsing(t_setting *setting, char *file)
 
 	i = ft_strlen(file) - 4;
 	if (ft_strncmp(&file[i], ".cub", 4))
-		print_error();
+		print_error(); // 파일 확장자 에러
 	
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		print_error();
+		print_error(); // 파일 오픈 에러
 	
-	init_setting(setting);
+	init_data(data);
 
 	line = "";
 	while (line)
@@ -97,9 +93,11 @@ void	parsing(t_setting *setting, char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		check_element(setting, line);
+		parse_line(data, line);
 		free(line);
 	}
-	
-	//printf("%s\n%s\n%s\n%s\n", setting->north, setting->south, setting->west, setting->east);
+	check_data(data);
+	free(line);
+	// printf("%s %s %s %s\n", data->north, data->south, data->west, data->east);
+	// printf("#%04x #%04x\n", data->floor, data->ceil);
 }

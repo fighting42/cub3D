@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/24 22:13:21 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/25 14:37:07 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	print_error(void)
 
 int	main(int argc, char **argv)
 {
-	t_setting	setting;
+	t_data	data;
 
 	if (argc != 2)
 		print_error();
-	parsing(&setting, argv[1]);
+	parsing(&data, argv[1]);
 	
 	// mlx test
 	// void *mlx_ptr = mlx_init();

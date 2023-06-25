@@ -6,18 +6,18 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:26:11 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/24 19:44:46 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/25 14:36:20 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_setting(t_setting *setting)
+void	init_data(t_data *data)
 {
-	setting->east = NULL;
-	setting->west = NULL;
-	setting->south = NULL;
-	setting->north = NULL;
-	setting->floor[0] = -1;
-	setting->ceil[0] = -1;
+	data->east = NULL;
+	data->west = NULL;
+	data->south = NULL;
+	data->north = NULL;
+	data->floor = -1;
+	data->ceil = -1;
 }

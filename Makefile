@@ -19,6 +19,7 @@ MLXFLAGS = -L ./mlx -lmlx -framework OpenGL -framework Appkit
 SRCS =  main.c \
 		parsing/parsing.c \
 		parsing/init.c \
+		parsing/utils.c \
 		parsing/get_next_line.c 
 
 OBJS = $(SRCS:.c=.o)
