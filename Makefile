@@ -18,7 +18,8 @@ MLXFLAGS = -L ./mlx -lmlx -framework OpenGL -framework Appkit
 
 SRCS =  main.c \
 		parsing/parsing.c \
-		parsing/init.c \
+		parsing/parse_data.c \
+		parsing/parse_map.c \
 		parsing/utils.c \
 		parsing/get_next_line.c 
 

@@ -27,7 +27,7 @@ char	*remove_space_back(char *str)
 	int	i;
 
 	i = ft_strlen(str) - 1;
-	while (str[i] == ' ' || str[i] == '\n' || (str[i] >= 9 && str[i] <= 13))
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i--;
 	str[++i] = 0;
 	return (str);
@@ -36,16 +36,22 @@ char	*remove_space_back(char *str)
 int	ft_atoi_255(char *str)
 {
 	int	i;
+	int	num_chk;
 	int	tmp;
 
 	i = 0;
+	num_chk = 0;
 	while (str[i])
 	{
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '+' \
 			|| str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 			print_error(); // rgb 값(숫자 x) 에러
+		if (str[i] >= '0' && str[i] <= '9')
+			num_chk++;
 		i++;
 	}
+	if (num_chk == 0)
+		print_error(); // rgb 값(숫자 x) 에러
 	tmp = ft_atoi(str);
 	if (!(tmp >= 0 && tmp <= 255))
 		print_error(); // rgb 범위 에러
@@ -54,10 +60,20 @@ int	ft_atoi_255(char *str)
 
 int	rgb_to_int(char **str)
 {
+	int	i;
 	int	tmp;
 
+	i = 0;
+	while (str[i])
+		i++;
+	if (i != 3)
+		print_error(); // rgb format(',' 2개) 에러
 	tmp = ft_atoi_255(str[0]) << 16;
 	tmp += ft_atoi_255(str[1]) << 8;
 	tmp += ft_atoi_255(str[2]);
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 	return (tmp);
 }

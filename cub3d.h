@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/25 16:23:32 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/25 17:52:08 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,16 @@ typedef struct s_info
 void	print_error(void);
 
 // parsing/parsing.c
-void	parsing(t_data *data, char *file);
+void	parsing(t_info *info, char *file);
+void	init_data(t_data *data);
+// parsing/parse_data.c
+int		parse_data(t_data *data, char *line);
+void	check_data(t_data *data);
 char	*parse_texture(char *var, char *str);
 int		parse_color(int var, char *str);
-void	parse_line(t_data *data, char *line);
-void	check_data(t_data *data);
-// parsing/init.c
-void	init_data(t_data *data);
+// parsing/parse_map.c
+void    parse_map(char **map, char *line);
+void    check_map(char **map);
 // parsing/utils.c
 char	*remove_space(char *str);
 char	*remove_space_back(char *str);
