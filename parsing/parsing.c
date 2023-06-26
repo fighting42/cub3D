@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/25 17:52:49 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 15:38:43 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	parsing(t_info *info, char *file)
 	int		i;
 	int		fd;
 	char	*line;
+	int		flag;
 
 	i = ft_strlen(file) - 4;
 	if (ft_strncmp(&file[i], ".cub", 4))
@@ -41,12 +42,15 @@ void	parsing(t_info *info, char *file)
 	init_data(&data);
 	map = NULL;
 	line = "";
+	flag = 0;
 	while (line)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		if (!parse_data(&data, line))
+			flag = 1;
+		if (flag)
 			parse_map(map, line);
 		free(line);
 	}

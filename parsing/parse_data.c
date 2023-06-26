@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:06 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/25 16:32:06 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 15:39:45 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	parse_data(t_data *data, char *line)
 		data->floor = parse_color(data->floor, str);
 	else if (!ft_strncmp(str, "C ", 2))
 		data->ceil = parse_color(data->ceil, str);
-	else if (!ft_strlen(str)) // map 중간에 개행 있으면 error ?
+	else if (!ft_strlen(str))
 		return (1);
 	else
 		return (0);

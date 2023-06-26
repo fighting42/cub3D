@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:03 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/25 16:32:03 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 15:40:40 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void    parse_map(char **map, char *line)
     {
         if (!(line[i] == '0' || line[i] == '1' || line[i] == ' ' || line[i] == '\n' \
             || line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W'))
-            print_error(); // map 에러
+            print_error(); // map 값 에러
         i++;
     }
+	if (ft_strlen(remove_space(line)) == 0)
+		print_error(); // map 개행 에러
 }

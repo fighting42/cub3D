@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:47:04 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/25 14:47:04 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 15:20:14 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,17 @@ char	*remove_space_back(char *str)
 int	ft_atoi_255(char *str)
 {
 	int	i;
-	int	num_chk;
 	int	tmp;
 
 	i = 0;
-	num_chk = 0;
 	while (str[i])
 	{
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '+' \
 			|| str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 			print_error(); // rgb 값(숫자 x) 에러
-		if (str[i] >= '0' && str[i] <= '9')
-			num_chk++;
 		i++;
 	}
-	if (num_chk == 0)
+	if (i == 0)
 		print_error(); // rgb 값(숫자 x) 에러
 	tmp = ft_atoi(str);
 	if (!(tmp >= 0 && tmp <= 255))
