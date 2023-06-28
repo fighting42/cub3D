@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setting_info.c                                     :+:      :+:    :+:   */
+/*   set_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/06/28 09:40:27 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/06/28 12:18:20 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	init_buf(t_info *info)
 void	set_info(t_info *info)
 {
 	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "mlx 42");
 	info->movespeed = 0.15;
 	info->rotspeed = 0.1;
 	init_buf(info);
@@ -77,4 +76,6 @@ void	set_info(t_info *info)
 		start_dir_NS(info);
 	else if (info->start_dir == 'W' || info->start_dir == 'E')
 		start_dir_EW(info);
+	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "mlx 42");
+	
 }

@@ -6,7 +6,7 @@
 /*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/28 09:47:28 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/06/28 12:13:49 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,12 @@
 
 typedef struct s_img
 {
+	void	*img;
 	int		width;
 	int		height;
+	int		endian;
+	int		bits_per_pixel;
+	int		line_size;
 	int		*data;
 }	t_img;
 
@@ -123,7 +127,7 @@ void	draw_floor_ceil(t_info *info);
 void	keypress_WD(int keycode, t_info *info);
 void	keypress_AS(int keycode, t_info *info);
 int		key_press(int keycode, t_info *info);
-// raycasting/setting_info.c
+// raycasting/set_info.c
 void	start_dir_NS(t_info *info);
 void	start_dir_EW(t_info *info);
 void	init_buf(t_info *info);
