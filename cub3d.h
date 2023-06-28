@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/25 17:52:08 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/27 22:12:21 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@
 # define HEIGHT 480
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
-# define MAPWIDTH 24
-# define MAPHEIGHT 24
+# define K_ESC 53
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_EXIT 17
 
 typedef struct s_img
 {
@@ -48,19 +49,20 @@ typedef struct s_data
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor; // rgb color int형으로 변환. 이거 그대로 사용하면 됨.
-	int		ceil; // 위와 동일 !
-}	t_data; // 구 t_setting.. 구조체 이름 변경했읍니다.. 이유는 내 맴..ㅋ..ㅎ
+	int		floor[3]; // rgb color int형으로 변환. 이거 그대로 사용하면 됨. -> r,g,b 따로 따로 담아줘야될것 같오~~~
+	int		ceil[3]; // 위와 동일 ! -> 얘도!!!
+}	t_data; // ㅋㅋㅋ 확인 완료했숩니당 ㅇㅖ키미 맴~~ ㅎㅋ
 
 typedef struct s_info
 {
 	char	**map;
+	char	start_dir; //예지나 처음 플레이어 방향만 여기다가 담아줭 A,S,D,W 중에 하나!
 	t_data	*data;
 	t_img	*img;
 	void	*mlx;
 	void	*win;
-	double	pos_x;
-	double	pos_y;
+	double	pos_x; // 초기 위치 x좌표 담아줭 !!
+	double	pos_y; // 초기 위치 y좌표 담아줭 !!
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -91,5 +93,15 @@ int		ft_atoi_255(char *str);
 int		rgb_to_int(char **str);
 // parsing/get_next_line.c
 char	*get_next_line(int fd);
+
+// raycasting/raycasting.c
+void	set_info(t_info *info);
+void	raycasting(t_info *info);
+
+// raycasting/keypress.c
+void	keypress_WD(int keycode, t_info *info);
+void	keypress_AS(int keycode, t_info *info);
+int		key_press(int keycode, t_info *info);
+
 
 #endif
