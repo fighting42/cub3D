@@ -6,7 +6,7 @@
 /*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/27 22:12:21 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/06/28 09:47:28 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,25 @@ typedef struct s_data
 	int		ceil[3]; // 위와 동일 ! -> 얘도!!!
 }	t_data; // ㅋㅋㅋ 확인 완료했숩니당 ㅇㅖ키미 맴~~ ㅎㅋ
 
+typedef struct s_mapcamera
+{
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perwalldist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	step;
+}	t_mapcamera;
+
 typedef struct s_info
 {
 	char	**map;
@@ -84,8 +103,8 @@ void	check_data(t_data *data);
 char	*parse_texture(char *var, char *str);
 int		parse_color(int var, char *str);
 // parsing/parse_map.c
-void    parse_map(char **map, char *line);
-void    check_map(char **map);
+void	parse_map(char **map, char *line);
+void	check_map(char **map);
 // parsing/utils.c
 char	*remove_space(char *str);
 char	*remove_space_back(char *str);
@@ -95,13 +114,19 @@ int		rgb_to_int(char **str);
 char	*get_next_line(int fd);
 
 // raycasting/raycasting.c
-void	set_info(t_info *info);
 void	raycasting(t_info *info);
+
+// raycasting/draw_map.c
+void	draw_floor_ceil(t_info *info);
 
 // raycasting/keypress.c
 void	keypress_WD(int keycode, t_info *info);
 void	keypress_AS(int keycode, t_info *info);
 int		key_press(int keycode, t_info *info);
-
+// raycasting/setting_info.c
+void	start_dir_NS(t_info *info);
+void	start_dir_EW(t_info *info);
+void	init_buf(t_info *info);
+void	set_info(t_info *info);
 
 #endif
