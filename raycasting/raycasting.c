@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:43 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/28 12:04:11 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/06/29 17:30:30 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,14 @@ void	set_mapcamera(t_info *info, t_mapcamera *mapcam, int i)
 	set_moving_dir(info, mapcam);
 	mapcam->hit = 0;
 	wall_x_or_y(info, mapcam);
+	mapcam->line_height = HEIGHT / mapcam->perwalldist;
+	mapcam->start_point = (HEIGHT / 2) - (mapcam->line_height / 2);
+	if (mapcam->start_point < 0)
+		mapcam->start_point = 0;
+	mapcam->end_point = (HEIGHT / 2) + (mapcam->line_height / 2);
 }
 
-void	raycasting(t_info *info)
+int	raycasting(t_info *info)
 {
 	int			i;
 	t_mapcamera	mapcam;
@@ -91,8 +96,9 @@ void	raycasting(t_info *info)
 	while (i < WIDTH)
 	{
 		set_mapcamera(info, &mapcam, i);
-		draw_camera(info, &mapcam, i);
+		draw_mapcamera(info, &mapcam, i);
 		i++;
 	}
 	draw_map(info);
+	return (0);
 }

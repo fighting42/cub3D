@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:26:25 by dapark            #+#    #+#             */
-/*   Updated: 2023/06/24 16:20:41 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 17:41:33 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	keypress_WD(int keycode, t_info *info)
+void	keypress_wd(int keycode, t_info *info)
 {
 	if (keycode == KEY_D)
 	{
@@ -34,7 +34,7 @@ void	keypress_WD(int keycode, t_info *info)
 	}
 }
 
-void	keypress_AS(int keycode, t_info *info)
+void	keypress_as(int keycode, t_info *info)
 {
 	if (keycode == KEY_A)
 	{
@@ -56,12 +56,26 @@ void	keypress_AS(int keycode, t_info *info)
 	}
 }
 
+void	keypress_lr(int keycode, t_info *info)
+{
+	if (keycode == KEY_RO_L)
+	{
+		
+	}
+	else if (keycode == KEY_RO_R)
+	{
+		
+	}
+}
+
 int	key_press(int keycode, t_info *info)
 {
 	if (keycode == KEY_A || keycode == KEY_S)
-		keypress_AS(keycode, info);
+		keypress_as(keycode, info);
 	if (keycode == KEY_D || keycode == KEY_W)
-		keypress_WD(keycode, info);
+		keypress_wd(keycode, info);
+	if (keycode == KEY_RO_L || keycode == KEY_RO_R)
+		keypress_lr(keycode, info);
 	if (keycode == KEY_ESC)
 		exit(0);
 	return (0);

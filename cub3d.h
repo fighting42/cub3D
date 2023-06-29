@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/28 12:13:49 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/06/29 17:39:30 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define KEY_S 1
 # define KEY_D 2
 # define KEY_W 13
+# define KEY_RO_L 123
+# define KEY_RO_R 124
 # define KEY_ESC 53
 # define KEY_EXIT 17
 # define WIDTH 640
@@ -35,6 +37,15 @@
 # define K_ESC 53
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
+
+char worldMap[WIDTH][HEIGHT]=
+{
+	{1,1,1,1,1,1},
+	{1,0,0,1,0,1},
+	{1,0,1,0,0,1},
+	{1,1,0,0,'N'},
+	{1,1,1,1,1,1},
+}; // test용
 
 typedef struct s_img
 {
@@ -69,6 +80,9 @@ typedef struct s_mapcamera
 	double	deltadist_x;
 	double	deltadist_y;
 	double	perwalldist;
+	int		line_height;
+	int		start_point;
+	int		end_point;
 	int		step_x;
 	int		step_y;
 	int		hit;
@@ -118,18 +132,18 @@ int		rgb_to_int(char **str);
 char	*get_next_line(int fd);
 
 // raycasting/raycasting.c
-void	raycasting(t_info *info);
+int		raycasting(t_info *info);
 
 // raycasting/draw_map.c
 void	draw_floor_ceil(t_info *info);
 
 // raycasting/keypress.c
-void	keypress_WD(int keycode, t_info *info);
-void	keypress_AS(int keycode, t_info *info);
+void	keypress_wd(int keycode, t_info *info);
+void	keypress_as(int keycode, t_info *info);
 int		key_press(int keycode, t_info *info);
 // raycasting/set_info.c
-void	start_dir_NS(t_info *info);
-void	start_dir_EW(t_info *info);
+void	start_dir_ns(t_info *info);
+void	start_dir_ew(t_info *info);
 void	init_buf(t_info *info);
 void	set_info(t_info *info);
 
