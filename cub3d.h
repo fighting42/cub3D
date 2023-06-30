@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/29 17:39:30 by dapark           ###   ########.fr       */
+/*   Updated: 2023/06/30 21:12:04 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define K_ESC 53
+# define N 1
+# define S 2
+# define E 3
+# define W 4
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 
@@ -53,9 +57,10 @@ typedef struct s_img
 	int		width;
 	int		height;
 	int		endian;
-	int		bits_per_pixel;
+	int		bpp;
 	int		line_size;
 	int		*data;
+	int		tex_buf[64][64];
 }	t_img;
 
 typedef struct s_data
@@ -85,6 +90,10 @@ typedef struct s_mapcamera
 	int		end_point;
 	int		step_x;
 	int		step_y;
+	int		wall_x;
+	int		tex_x;
+	int		tex_y;
+	int		tex_pos;
 	int		hit;
 	int		side;
 	double	step;
@@ -95,7 +104,7 @@ typedef struct s_info
 	char	**map;
 	char	start_dir; //예지나 처음 플레이어 방향만 여기다가 담아줭 A,S,D,W 중에 하나!
 	t_data	*data;
-	t_img	*img;
+	t_img	img[4];
 	void	*mlx;
 	void	*win;
 	double	pos_x; // 초기 위치 x좌표 담아줭 !!
@@ -133,18 +142,26 @@ char	*get_next_line(int fd);
 
 // raycasting/raycasting.c
 int		raycasting(t_info *info);
-
+void	wall_x_or_y(t_info *info, t_mapcamera *mapcam);
+void	set_moving_dir(t_info *info, t_mapcamera *mapcam);
+void	set_mapcamera(t_info *info, t_mapcamera *mapcam, int i);
 // raycasting/draw_map.c
 void	draw_floor_ceil(t_info *info);
-
+void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, char dir);
+void	draw_mapcamera(t_info *info, t_mapcamera *mapcam, int i);
+void	draw_map(t_info *info);
 // raycasting/keypress.c
 void	keypress_wd(int keycode, t_info *info);
 void	keypress_as(int keycode, t_info *info);
+void	keypress_lr(int keycode, t_info *info, int ori_plane_x, int ori_dir_x);
 int		key_press(int keycode, t_info *info);
 // raycasting/set_info.c
 void	start_dir_ns(t_info *info);
 void	start_dir_ew(t_info *info);
 void	init_buf(t_info *info);
 void	set_info(t_info *info);
+// raycasting/set_texture.c
+void	set_texture_util(t_info *info, int dir, char *path);
+void	set_texture(t_info *info);
 
 #endif

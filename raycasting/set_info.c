@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/06/29 17:30:45 by dapark           ###   ########.fr       */
+/*   Updated: 2023/06/30 20:58:48 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,17 @@ void	init_buf(t_info *info)
 
 void	set_info(t_info *info)
 {
-	info->map = worldMap; //test
-	info->start_dir = 'N'; // test
 	info->mlx = mlx_init();
 	info->movespeed = 0.15;
 	info->rotspeed = 0.1;
 	init_buf(info);
+	set_texture(info);
 	if (info->start_dir == 'N' || info->start_dir == 'S')
 		start_dir_NS(info);
 	else if (info->start_dir == 'W' || info->start_dir == 'E')
 		start_dir_EW(info);
 	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "mlx 42");
+	info->img[0].img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	info->img[0].data = (int *)mlx_get_data_addr(info->img[0].img, \
+			&info->img[0].bpp, &info->img[0].line_size, &info->img[0].endian);
 }

@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:43 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/29 17:30:30 by dapark           ###   ########.fr       */
+/*   Updated: 2023/06/30 20:57:05 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	wall_x_or_y(t_info *info, t_mapcamera *mapcam)
 		if (info->map[mapcam->map_x][mapcam->map_y] == '1')
 			mapcam->hit = 1;
 	}
-	if (mapcam->side == 0) //x면과 충돌
+	if (mapcam->side == 0)
 		mapcam->perwalldist = (mapcam->map_x - info->pos_x
 				+ (1 - mapcam->step_x) / 2) / mapcam->raydir_x;
-	else //y면과 충돌
+	else
 		mapcam->perwalldist = (mapcam->map_y - info->pos_y
 				+ (1 - mapcam->step_y) / 2) / mapcam->raydir_y;
 }
