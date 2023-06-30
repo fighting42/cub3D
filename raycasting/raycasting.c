@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:43 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/30 20:57:05 by dapark           ###   ########.fr       */
+/*   Updated: 2023/06/30 21:14:42 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	set_mapcamera(t_info *info, t_mapcamera *mapcam, int i)
 	if (mapcam->start_point < 0)
 		mapcam->start_point = 0;
 	mapcam->end_point = (HEIGHT / 2) + (mapcam->line_height / 2);
+	if (mapcam->end_point == HEIGHT)
+		mapcam->end_point = HEIGHT - 1;
 }
 
 int	raycasting(t_info *info)
