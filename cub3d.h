@@ -42,14 +42,14 @@
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 
-char worldMap[WIDTH][HEIGHT]=
-{
-	{1,1,1,1,1,1},
-	{1,0,0,1,0,1},
-	{1,0,1,0,0,1},
-	{1,1,0,0,'N'},
-	{1,1,1,1,1,1},
-}; // test용
+// char worldMap[WIDTH][HEIGHT]=
+// {
+// 	{1,1,1,1,1,1},
+// 	{1,0,0,1,0,1},
+// 	{1,0,1,0,0,1},
+// 	{1,1,0,0,'N'},
+// 	{1,1,1,1,1,1},
+// }; // test용
 
 typedef struct s_img
 {
@@ -69,9 +69,18 @@ typedef struct s_data
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor[3]; // rgb color int형으로 변환. 이거 그대로 사용하면 됨. -> r,g,b 따로 따로 담아줘야될것 같오~~~
-	int		ceil[3]; // 위와 동일 ! -> 얘도!!!
-}	t_data; // ㅋㅋㅋ 확인 완료했숩니당 ㅇㅖ키미 맴~~ ㅎㅋ
+	int		floor; // 확인 필요
+	int		ceil; // 확인 필요
+}	t_data;
+
+typedef struct s_map
+{
+	char			*line;
+	int				max_w;
+	int				max_h;
+	struct s_map	*next;
+}	t_map;
+
 
 typedef struct s_mapcamera
 {
@@ -102,13 +111,13 @@ typedef struct s_mapcamera
 typedef struct s_info
 {
 	char	**map;
-	char	start_dir; //예지나 처음 플레이어 방향만 여기다가 담아줭 A,S,D,W 중에 하나!
+	char	start_dir;
 	t_data	*data;
 	t_img	img[4];
 	void	*mlx;
 	void	*win;
-	double	pos_x; // 초기 위치 x좌표 담아줭 !!
-	double	pos_y; // 초기 위치 y좌표 담아줭 !!
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -119,7 +128,7 @@ typedef struct s_info
 }	t_info;
 
 // main.c
-void	print_error(void);
+void	print_error(char *str);
 
 // parsing/parsing.c
 void	parsing(t_info *info, char *file);
@@ -130,9 +139,12 @@ void	check_data(t_data *data);
 char	*parse_texture(char *var, char *str);
 int		parse_color(int var, char *str);
 // parsing/parse_map.c
-void	parse_map(char **map, char *line);
-void	check_map(char **map);
+void	parse_map(t_map *map, char *line);
+void    check_map(t_info *info, char **map, int w, int h);
+char    **malloc_map(t_map *tmp_map);
+void	parse_map_info(t_info *info, char **map);
 // parsing/utils.c
+int		is_space(char c);
 char	*remove_space(char *str);
 char	*remove_space_back(char *str);
 int		ft_atoi_255(char *str);

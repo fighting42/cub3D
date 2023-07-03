@@ -22,23 +22,34 @@ void	init_data(t_data *data)
 	data->ceil = -1;
 }
 
+int	open_file(char *file)
+{
+	int	i;
+	int fd;
+
+	i = ft_strlen(file) - 4;
+	if (ft_strncmp(&file[i], ".cub", 4))
+		print_error("The file extension is not \".cub\".");
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		print_error("The file cannot be opened.");
+	return (fd);
+}
+
 void	parsing(t_info *info, char *file)
 {
 	t_data	data;
 	char	**map;
-	int		i;
+	t_map	*tmp_map;
+	int		h;
+	int		w;
 	int		fd;
 	char	*line;
 	int		flag;
 
-	i = ft_strlen(file) - 4;
-	if (ft_strncmp(&file[i], ".cub", 4))
-		print_error(); // 파일 확장자 에러
-	
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		print_error(); // 파일 오픈 에러
-
+	fd = open_file(file);
+	tmp_map = malloc(sizeof(t_map));
+	tmp_map->line = NULL;
 	init_data(&data);
 	map = NULL;
 	line = "";
@@ -48,16 +59,19 @@ void	parsing(t_info *info, char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (!parse_data(&data, line))
+		if (!parse_data(&data, line) && !flag)
 			flag = 1;
 		if (flag)
-			parse_map(map, line);
+			parse_map(tmp_map, line);
 		free(line);
 	}
 	free(line);
-
+	w = tmp_map->max_w;
+	h = tmp_map->max_h - 1;
+	map = malloc_map(tmp_map);
+	parse_map_info(info, map);
 	check_data(&data);
-	check_map(map);
+	check_map(info, map, w, h);
 	info->data = &data;
 	info->map = map;
 }

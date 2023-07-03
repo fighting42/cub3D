@@ -17,7 +17,7 @@ char	*parse_texture(char *var, char *str)
 	char	*tmp;
 
 	if (var)
-		print_error(); // 중복 요소 에러
+		print_error("There are duplicate elements.");
 	tmp = remove_space(&str[2]);
 	tmp = remove_space_back(tmp);
 	return (ft_strdup(tmp));
@@ -29,7 +29,7 @@ int	parse_color(int var, char *str)
 	char	**ret;
 	
 	if (var >= 0)
-		print_error(); // 중복 요소 에러
+		print_error("There are duplicate elements.");
 	tmp = remove_space(&str[1]);
 	ret = ft_split(tmp, ',');
 	return (rgb_to_int(ret));
@@ -37,19 +37,18 @@ int	parse_color(int var, char *str)
 
 void	check_data(t_data *data)
 {
-	// 요소 없음 에러
 	if (!data->north)
-		print_error();
+		print_error("There is no 'NO' value.");
 	if (!data->south)
-		print_error();
+		print_error("There is no 'SO' value.");
 	if (!data->west)
-		print_error();
+		print_error("There is no 'WE' value.");
 	if (!data->east)
-		print_error();
+		print_error("There is no 'EA' value.");
 	if (data->floor < 0)
-		print_error();
+		print_error("There is no 'F' value.");
 	if (data->ceil < 0)
-		print_error();
+		print_error("There is no 'C' value.");
 }
 
 int	parse_data(t_data *data, char *line)
