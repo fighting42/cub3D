@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:06 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/26 15:39:45 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/04 16:33:44 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*parse_texture(char *var, char *str)
 
 	if (var)
 		print_error("There are duplicate elements.");
-	tmp = remove_space(&str[2]);
-	tmp = remove_space_back(tmp);
+	tmp = remove_space(&str[2], FRONT);
+	tmp = remove_space(tmp, BACK);
 	return (ft_strdup(tmp));
 }
 
@@ -27,35 +27,19 @@ int	parse_color(int var, char *str)
 {
 	char	*tmp;
 	char	**ret;
-	
+
 	if (var >= 0)
 		print_error("There are duplicate elements.");
-	tmp = remove_space(&str[1]);
+	tmp = remove_space(&str[1], FRONT);
 	ret = ft_split(tmp, ',');
 	return (rgb_to_int(ret));
-}
-
-void	check_data(t_data *data)
-{
-	if (!data->north)
-		print_error("There is no 'NO' value.");
-	if (!data->south)
-		print_error("There is no 'SO' value.");
-	if (!data->west)
-		print_error("There is no 'WE' value.");
-	if (!data->east)
-		print_error("There is no 'EA' value.");
-	if (data->floor < 0)
-		print_error("There is no 'F' value.");
-	if (data->ceil < 0)
-		print_error("There is no 'C' value.");
 }
 
 int	parse_data(t_data *data, char *line)
 {
 	char	*str;
 
-	str = remove_space(line);
+	str = remove_space(line, FRONT);
 	if (!ft_strncmp(str, "NO ", 3))
 		data->north = parse_texture(data->north, str);
 	else if (!ft_strncmp(str, "SO ", 3))

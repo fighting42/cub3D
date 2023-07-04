@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/26 15:38:43 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/04 17:15:58 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_data(t_data *data)
 int	open_file(char *file)
 {
 	int	i;
-	int fd;
+	int	fd;
 
 	i = ft_strlen(file) - 4;
 	if (ft_strncmp(&file[i], ".cub", 4))
@@ -36,22 +36,13 @@ int	open_file(char *file)
 	return (fd);
 }
 
-void	parsing(t_info *info, char *file)
+void	parse_line(char *file, t_data *data, t_map *tmp_map)
 {
-	t_data	data;
-	char	**map;
-	t_map	*tmp_map;
-	int		h;
-	int		w;
 	int		fd;
 	char	*line;
 	int		flag;
 
 	fd = open_file(file);
-	tmp_map = malloc(sizeof(t_map));
-	tmp_map->line = NULL;
-	init_data(&data);
-	map = NULL;
 	line = "";
 	flag = 0;
 	while (line)
@@ -59,19 +50,31 @@ void	parsing(t_info *info, char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (!parse_data(&data, line) && !flag)
+		if (!parse_data(data, line) && !flag)
 			flag = 1;
 		if (flag)
 			parse_map(tmp_map, line);
 		free(line);
 	}
 	free(line);
+}
+
+void	parsing(t_info *info, char *file)
+{
+	t_data	*data;
+	t_map	*tmp_map;
+	char	**map;
+	int		w;
+	int		h;
+
+	data = malloc(sizeof(t_data));
+	init_data(data);
+	tmp_map = malloc(sizeof(t_map));
+	tmp_map->line = NULL;
+	parse_line(file, data, tmp_map);
 	w = tmp_map->max_w;
 	h = tmp_map->max_h - 1;
 	map = malloc_map(tmp_map);
-	parse_map_info(info, map);
-	check_data(&data);
-	check_map(info, map, w, h);
-	info->data = &data;
-	info->map = map;
+	info->data = check_data(data);
+	info->map = check_map(info, map, w, h);
 }

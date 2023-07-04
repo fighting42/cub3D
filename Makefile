@@ -6,7 +6,7 @@
 #    By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 20:25:24 by yejinkim          #+#    #+#              #
-#    Updated: 2023/06/24 22:15:57 by yejinkim         ###   ########seoul.kr   #
+#    Updated: 2023/07/04 15:45:56 by yejinkim         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =  main.c \
 		parsing/parsing.c \
 		parsing/parse_data.c \
 		parsing/parse_map.c \
+		parsing/check.c \
 		parsing/utils.c \
 		parsing/get_next_line.c 
 

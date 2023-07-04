@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:47:04 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/26 15:20:14 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/04 16:39:26 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,39 @@ int	is_space(char c)
 		return (0);
 }
 
-char	*remove_space(char *str)
+char	*remove_space(char *str, int flag)
 {
 	int	i;
 
-	i = 0;
-	while (is_space(str[i]))
-		i++;
-	return (&str[i]);
+	if (flag == FRONT)
+	{
+		i = 0;
+		while (is_space(str[i]))
+			i++;
+		return (&str[i]);
+	}
+	else
+	{
+		i = ft_strlen(str) - 1;
+		while (is_space(str[i]))
+			i--;
+		str[++i] = 0;
+		return (str);
+	}
 }
 
-char	*remove_space_back(char *str)
+char	*ft_strndup(char *str, int len)
 {
-	int	i;
+	int		i;
+	char	*ret;
 
-	i = ft_strlen(str) - 1;
-	while (is_space(str[i]))
-		i--;
-	str[++i] = 0;
-	return (str);
+	i = -1;
+	ret = malloc(sizeof(char) * len);
+	while (++i < (int)ft_strlen(str))
+		ret[i] = str[i];
+	while (i <= len)
+		ret[i++] = '\0';
+	return (ret);
 }
 
 int	ft_atoi_255(char *str)
@@ -49,7 +63,7 @@ int	ft_atoi_255(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '+' || is_space(str[i])))
+		if (!((str[i] >= '0' && str[i] <= '9') || is_space(str[i])))
 			print_error("The RGB value is not a number.");
 		i++;
 	}

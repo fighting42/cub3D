@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/06/30 21:12:04 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:24:09 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define W 4
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
+# define FRONT 1
+# define BACK 0
 
 // char worldMap[WIDTH][HEIGHT]=
 // {
@@ -69,8 +71,8 @@ typedef struct s_data
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor; // 확인 필요
-	int		ceil; // 확인 필요
+	int		floor; // 비트 밀어서 주는거임!! parsing/utils.c -> rgb_to_int() 함수 확인
+	int		ceil; // 비트 밀어서 주는거임!! parsing/utils.c -> rgb_to_int() 함수 확인
 }	t_data;
 
 typedef struct s_map
@@ -132,21 +134,28 @@ void	print_error(char *str);
 
 // parsing/parsing.c
 void	parsing(t_info *info, char *file);
+void	parse_line(char *file, t_data *data, t_map *tmp_map);
+int		open_file(char *file);
 void	init_data(t_data *data);
 // parsing/parse_data.c
 int		parse_data(t_data *data, char *line);
-void	check_data(t_data *data);
-char	*parse_texture(char *var, char *str);
 int		parse_color(int var, char *str);
+char	*parse_texture(char *var, char *str);
 // parsing/parse_map.c
 void	parse_map(t_map *map, char *line);
-void    check_map(t_info *info, char **map, int w, int h);
+void	add_map_line(t_map *map, char *line);
+void	new_map_line(t_map *map, char *line, int h, int len);
+void	chage_max(t_map *map, int len, int h);
 char    **malloc_map(t_map *tmp_map);
-void	parse_map_info(t_info *info, char **map);
+// parsing/check.c
+char	**check_map(t_info *info, char **map, int w, int h);
+void	check_wall(char **map, int i, int j, int flag);
+t_data	*check_data(t_data *data);
+void	set_start_info(t_info *info, char c, int x, int y);
 // parsing/utils.c
 int		is_space(char c);
-char	*remove_space(char *str);
-char	*remove_space_back(char *str);
+char	*remove_space(char *str, int flag);
+char	*ft_strndup(char *str, int len);
 int		ft_atoi_255(char *str);
 int		rgb_to_int(char **str);
 // parsing/get_next_line.c
