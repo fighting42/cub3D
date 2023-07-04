@@ -6,20 +6,24 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 17:15:58 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/04 18:57:28 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_data(t_data *data)
+t_data	*init_data(void)
 {
+	t_data	*data;
+
+	data = malloc(sizeof(t_data));
 	data->east = NULL;
 	data->west = NULL;
 	data->south = NULL;
 	data->north = NULL;
 	data->floor = -1;
 	data->ceil = -1;
+	return (data);
 }
 
 int	open_file(char *file)
@@ -62,19 +66,12 @@ void	parse_line(char *file, t_data *data, t_map *tmp_map)
 void	parsing(t_info *info, char *file)
 {
 	t_data	*data;
-	t_map	*tmp_map;
+	t_map	tmp_map;
 	char	**map;
-	int		w;
-	int		h;
 
-	data = malloc(sizeof(t_data));
-	init_data(data);
-	tmp_map = malloc(sizeof(t_map));
-	tmp_map->line = NULL;
-	parse_line(file, data, tmp_map);
-	w = tmp_map->max_w;
-	h = tmp_map->max_h - 1;
-	map = malloc_map(tmp_map);
+	data = init_data();
+	parse_line(file, data, &tmp_map);
+	map = malloc_map(&tmp_map);
 	info->data = check_data(data);
-	info->map = check_map(info, map, w, h);
+	info->map = check_map(info, map, &tmp_map);
 }

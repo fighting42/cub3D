@@ -1,47 +1,41 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   check.c											:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>	 +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2023/07/04 15:45:37 by yejinkim		  #+#	#+#			 */
-/*   Updated: 2023/07/04 15:50:48 by yejinkim		 ###   ########seoul.kr  */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/04 15:45:37 by yejinkim          #+#    #+#             */
+/*   Updated: 2023/07/04 19:55:21 by yejinkim         ###   ########seoul.kr  */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	set_start_info(t_info *info, char c, int x, int y)
+void	check_xpm(char *file)
 {
-	if (info->start_dir)
-		print_error("The player direction is duplicated on the map.");
-	if (c == 'N')
-		info->start_dir = 'W';
-	else if (c == 'S')
-		info->start_dir = 'S';
-	else if (c == 'E')
-		info->start_dir = 'D';
-	else if (c == 'W')
-		info->start_dir = 'A';
-	info->pos_x = x;
-	info->pos_y = y;
+	int	i;
+	int	fd;
+
+	if (!file)
+		print_error("There are empty elements.");
+	i = ft_strlen(file) - 4;
+	if (ft_strncmp(&file[i], ".xpm", 4))
+		print_error("The extension of the texture file is not \".xpm\".");
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		print_error("The texture file cannot be opened.");
+	close(fd);
 }
 
 t_data	*check_data(t_data *data)
-{
-	if (!data->north)
-		print_error("There is no 'NO' value.");
-	if (!data->south)
-		print_error("There is no 'SO' value.");
-	if (!data->west)
-		print_error("There is no 'WE' value.");
-	if (!data->east)
-		print_error("There is no 'EA' value.");
-	if (data->floor < 0)
-		print_error("There is no 'F' value.");
-	if (data->ceil < 0)
-		print_error("There is no 'C' value.");
+{	
+	check_xpm(data->north);
+	check_xpm(data->south);
+	check_xpm(data->west);
+	check_xpm(data->east);
+	if (data->floor < 0 || data->ceil < 0)
+		print_error("There are empty elements.");
 	return (data);
 }
 
@@ -49,17 +43,17 @@ void	check_wall(char **map, int i, int j, int flag)
 {
 	if (flag && map[i][j] == '0')
 		print_error("The map is not surrounded by walls.");
-	if (map[i - 1][j] == '\0')
+	if (map[i - 1][j] == ' ')
 		print_error("The map is not surrounded by walls.");
-	if (map[i + 1][j] == '\0')
+	if (map[i + 1][j] == ' ')
 		print_error("The map is not surrounded by walls.");
-	if (map[i][j - 1] == '\0')
+	if (map[i][j - 1] == ' ')
 		print_error("The map is not surrounded by walls.");
-	if (map[i][j + 1] == '\0')
+	if (map[i][j + 1] == ' ')
 		print_error("The map is not surrounded by walls.");
 }
 
-char	**check_map(t_info *info, char **map, int w, int h)
+char	**check_map(t_info *info, char **map, t_map *tmp_map)
 {
 	int	i;
 	int	j;
@@ -73,7 +67,7 @@ char	**check_map(t_info *info, char **map, int w, int h)
 		while (map[i][++j])
 		{
 			flag = 0;
-			if (i == 0 || i == h || j == 0 || j == w)
+			if (i == 0 || i == tmp_map->max_h || j == 0 || j == tmp_map->max_w)
 				flag = 1;
 			if (map[i][j] == '0')
 				check_wall(map, i, j, flag);

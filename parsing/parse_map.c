@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   parse_map.c										:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>	 +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2023/06/25 16:32:03 by yejinkim		  #+#	#+#			 */
-/*   Updated: 2023/07/04 15:46:17 by yejinkim		 ###   ########seoul.kr  */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/25 16:32:03 by yejinkim          #+#    #+#             */
+/*   Updated: 2023/07/04 19:38:16 by yejinkim         ###   ########seoul.kr  */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
@@ -15,23 +15,21 @@
 char	**malloc_map(t_map *tmp_map)
 {
 	char	**map;
-	t_map	*tmp;
-	t_map	*free_tmp;
+	t_line	*line;
+	t_line	*free_tmp;
 	int		i;
-	int		width;
 
 	if (!tmp_map->line)
 		print_error("There is no map value.");
-	map = malloc(sizeof(char *) * (tmp_map->max_h + 1));
-	tmp = tmp_map;
-	width = tmp_map->max_w + 1;
+	map = malloc(sizeof(char *) * (tmp_map->max_h + 2));
+	line = tmp_map->line;
 	i = 0;
-	while (tmp)
+	while (line)
 	{
-		map[i] = ft_strndup(tmp->line, width);
-		free(tmp->line);
-		free_tmp = tmp;
-		tmp = tmp->next;
+		map[i] = ft_strndup(line->str, tmp_map->max_w + 2);
+		free(line->str);
+		free_tmp = line;
+		line = line->next;
 		free(free_tmp);
 		i++;
 	}
@@ -39,49 +37,52 @@ char	**malloc_map(t_map *tmp_map)
 	return (map);
 }
 
-void	chage_max(t_map *map, int len, int h)
+void	set_start_info(t_info *info, char c, int x, int y)
 {
-	if (map->max_w < len)
-		map->max_w = len;
-	map->max_h = h;
+	if (info->start_dir)
+		print_error("The player direction is duplicated on the map.");
+	if (c == 'N')
+		info->start_dir = 'W';
+	else if (c == 'S')
+		info->start_dir = 'S';
+	else if (c == 'E')
+		info->start_dir = 'D';
+	else if (c == 'W')
+		info->start_dir = 'A';
+	info->pos_x = x;
+	info->pos_y = y;
 }
 
-void	new_map_line(t_map *map, char *line, int h, int len)
+t_line	*new_map_line(char *str)
 {
-	map->line = ft_strdup(line);
-	map->next = NULL;
-	if (h == 1)
-	{
-		map->max_w = len;
-		map->max_h = h;
-	}
-	else
-		chage_max(map, len, h);
-	printf("max_w: %d, map_y: %d\n", map->max_w, map->max_h);
+	t_line	*new_line;
+
+	str = remove_space(str, BACK);
+	new_line = malloc(sizeof(t_line));
+	new_line->str = ft_strdup(str);
+	new_line->next = NULL;
+	return (new_line);
 }
 
 void	add_map_line(t_map *map, char *line)
 {
-	static int	h;
-	int			len;
-	t_map		*tmp;
+	t_line	*head;
 
-	line = remove_space(line, BACK);
-	len = ft_strlen(line);
-	h++;
-	if (!map->line)
-		new_map_line(map, line, h, len);
+	head = map->line;
+	if (!head)
+	{
+		map->line = new_map_line(line);
+		map->max_h = 0;
+		map->max_w = ft_strlen(line);
+	}
 	else
 	{
-		tmp = map;
-		while (tmp->next)
-		{
-			chage_max(tmp, len, h);
-			tmp = tmp->next;
-		}
-		chage_max(tmp, len, h);
-		tmp->next = malloc(sizeof(t_map));
-		new_map_line(tmp->next, line, h, len);
+		while (head->next)
+			head = head->next;
+		head->next = new_map_line(line);
+		map->max_h++;
+		if (map->max_w < (int)ft_strlen(line))
+			map->max_w = ft_strlen(line);
 	}
 }
 
@@ -94,8 +95,7 @@ void	parse_map(t_map *map, char *line)
 	{
 		if (!(line[i] == '0' || line[i] == '1' || is_space(line[i]) || line[i] \
 			== 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W'))
-			print_error("The map contains invalid values. \
-				(Valid values: 0, 1, N, S, E, W)");
+			print_error("Invalid value.");
 		i++;
 	}
 	if (ft_strlen(remove_space(line, FRONT)) == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/06/30 20:57:42 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/04 19:58:07 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	draw_floor_ceil(t_info *info)
 		{
 			if (i < HEIGHT / 2)
 			{
+				// info->buf[i][j] = info->data->floor      <- 내가 비트 밀어서 주니까 이렇게 한줄만 써도 될듯?!
 				info->buf[i][j] = info->data->floor[0] << 16;
 				info->buf[i][j] += info->data->floor[1] << 8;
 				info->buf[i][j] += info->data->floor[2];

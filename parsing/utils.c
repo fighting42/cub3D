@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:47:04 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 16:39:26 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/04 19:27:33 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ char	*ft_strndup(char *str, int len)
 	ret = malloc(sizeof(char) * len);
 	while (++i < (int)ft_strlen(str))
 		ret[i] = str[i];
-	while (i <= len)
-		ret[i++] = '\0';
+	while (i < len)
+		ret[i++] = ' ';
+	ret[i] = '\0';
 	return (ret);
 }
 
@@ -64,11 +65,11 @@ int	ft_atoi_255(char *str)
 	while (str[i])
 	{
 		if (!((str[i] >= '0' && str[i] <= '9') || is_space(str[i])))
-			print_error("The RGB value is not a number.");
+			print_error("Invalid RGB value. (Valid range: 0 to 255)");
 		i++;
 	}
 	if (i == 0)
-		print_error("The RGB value is not a number.");
+		print_error("Invalid RGB value. (Valid range: 0 to 255)");
 	tmp = ft_atoi(str);
 	if (!(tmp >= 0 && tmp <= 255))
 		print_error("Invalid RGB value. (Valid range: 0 to 255)");

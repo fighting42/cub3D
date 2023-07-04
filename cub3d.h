@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 17:24:09 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/04 20:00:31 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,18 @@ typedef struct s_data
 	int		ceil; // 비트 밀어서 주는거임!! parsing/utils.c -> rgb_to_int() 함수 확인
 }	t_data;
 
+typedef struct s_line
+{
+	char			*str;
+	struct s_line	*next;
+}	t_line;
+
 typedef struct s_map
 {
-	char			*line;
-	int				max_w;
-	int				max_h;
-	struct s_map	*next;
+	t_line	*line;
+	int		max_w;
+	int		max_h;
 }	t_map;
-
 
 typedef struct s_mapcamera
 {
@@ -136,7 +140,7 @@ void	print_error(char *str);
 void	parsing(t_info *info, char *file);
 void	parse_line(char *file, t_data *data, t_map *tmp_map);
 int		open_file(char *file);
-void	init_data(t_data *data);
+t_data	*init_data(void);
 // parsing/parse_data.c
 int		parse_data(t_data *data, char *line);
 int		parse_color(int var, char *str);
@@ -144,20 +148,20 @@ char	*parse_texture(char *var, char *str);
 // parsing/parse_map.c
 void	parse_map(t_map *map, char *line);
 void	add_map_line(t_map *map, char *line);
-void	new_map_line(t_map *map, char *line, int h, int len);
-void	chage_max(t_map *map, int len, int h);
-char    **malloc_map(t_map *tmp_map);
+t_line	*new_map_line(char *line);
+void	set_start_info(t_info *info, char c, int x, int y);
+char	**malloc_map(t_map *tmp_map);
 // parsing/check.c
-char	**check_map(t_info *info, char **map, int w, int h);
+char	**check_map(t_info *info, char **map, t_map *tmp_map);
 void	check_wall(char **map, int i, int j, int flag);
 t_data	*check_data(t_data *data);
-void	set_start_info(t_info *info, char c, int x, int y);
+void	check_xpm(char *file);
 // parsing/utils.c
-int		is_space(char c);
-char	*remove_space(char *str, int flag);
-char	*ft_strndup(char *str, int len);
-int		ft_atoi_255(char *str);
 int		rgb_to_int(char **str);
+int		ft_atoi_255(char *str);
+char	*ft_strndup(char *str, int len);
+char	*remove_space(char *str, int flag);
+int		is_space(char c);
 // parsing/get_next_line.c
 char	*get_next_line(int fd);
 
