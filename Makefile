@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 20:25:24 by yejinkim          #+#    #+#              #
-#    Updated: 2023/07/04 15:45:56 by yejinkim         ###   ########seoul.kr   #
+#    Updated: 2023/07/07 00:36:15 by daheepark        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,12 @@ SRCS =  main.c \
 		parsing/parse_map.c \
 		parsing/check.c \
 		parsing/utils.c \
-		parsing/get_next_line.c 
+		parsing/get_next_line.c \
+		raycasting/draw_map.c \
+		raycasting/keypress.c \
+		raycasting/raycasting.c \
+		raycasting/set_info.c \
+		raycasting/set_texture.c \
 
 OBJS = $(SRCS:.c=.o)
 

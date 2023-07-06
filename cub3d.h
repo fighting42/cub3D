@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 20:00:31 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/07 01:46:03 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,14 @@
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define K_ESC 53
-# define N 1
-# define S 2
-# define E 3
-# define W 4
+# define N 0
+# define S 1
+# define E 2
+# define W 3
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 # define FRONT 1
 # define BACK 0
-
-// char worldMap[WIDTH][HEIGHT]=
-// {
-// 	{1,1,1,1,1,1},
-// 	{1,0,0,1,0,1},
-// 	{1,0,1,0,0,1},
-// 	{1,1,0,0,'N'},
-// 	{1,1,1,1,1,1},
-// }; // test용
 
 typedef struct s_img
 {
@@ -71,8 +62,8 @@ typedef struct s_data
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor; // 비트 밀어서 주는거임!! parsing/utils.c -> rgb_to_int() 함수 확인
-	int		ceil; // 비트 밀어서 주는거임!! parsing/utils.c -> rgb_to_int() 함수 확인
+	int		floor;
+	int		ceil;
 }	t_data;
 
 typedef struct s_line
@@ -172,7 +163,7 @@ void	set_moving_dir(t_info *info, t_mapcamera *mapcam);
 void	set_mapcamera(t_info *info, t_mapcamera *mapcam, int i);
 // raycasting/draw_map.c
 void	draw_floor_ceil(t_info *info);
-void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, char dir);
+void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, int dir);
 void	draw_mapcamera(t_info *info, t_mapcamera *mapcam, int i);
 void	draw_map(t_info *info);
 // raycasting/keypress.c

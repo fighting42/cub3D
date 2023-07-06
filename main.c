@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:25:58 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 20:11:10 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/07 02:04:00 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	print_error(char *str)
 
 int	red_press(void *value)
 {
+	(void)value;
 	value = NULL;
 	exit(0);
 }
@@ -31,7 +32,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		print_error("The number of arguments is not 1.");
-	parsing(&info, argv[1]); // info 구조체 [map, data, start_dir, pos_x, pos_y] 저장
+	parsing(&info, argv[1]);
 	set_info(&info);
 	mlx_loop_hook(info.mlx, &raycasting, &info);
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/06/30 20:58:48 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/07 00:39:28 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	start_dir_ns(t_info *info)
 {
@@ -74,9 +74,9 @@ void	set_info(t_info *info)
 	init_buf(info);
 	set_texture(info);
 	if (info->start_dir == 'N' || info->start_dir == 'S')
-		start_dir_NS(info);
+		start_dir_ns(info);
 	else if (info->start_dir == 'W' || info->start_dir == 'E')
-		start_dir_EW(info);
+		start_dir_ew(info);
 	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "mlx 42");
 	info->img[0].img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
 	info->img[0].data = (int *)mlx_get_data_addr(info->img[0].img, \
