@@ -32,7 +32,11 @@ int	open_file(char *file)
 	int	fd;
 
 	i = ft_strlen(file) - 4;
-	if (ft_strncmp(&file[i], ".cub", 4))
+	if (i < 0)
+		print_error("The file extension is not \".cub\".");
+	else if (!ft_strncmp(file, ".cub", 4) || !ft_strncmp(&file[i - 1], "/.cub", 5))
+		print_error("The file cannot be opened.");
+	else if (ft_strncmp(&file[i], ".cub", 4))
 		print_error("The file extension is not \".cub\".");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
