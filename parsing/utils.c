@@ -48,6 +48,8 @@ char	*ft_strndup(char *str, int len)
 
 	i = -1;
 	ret = malloc(sizeof(char) * len);
+	if (!ret)
+		exit(0);
 	while (++i < (int)ft_strlen(str))
 		ret[i] = str[i];
 	while (i < len)

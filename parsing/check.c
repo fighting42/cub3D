@@ -20,7 +20,11 @@ void	check_xpm(char *file)
 	if (!file)
 		print_error("There are empty elements.");
 	i = ft_strlen(file) - 4;
-	if (ft_strncmp(&file[i], ".xpm", 4))
+	if (i < 0)
+		print_error("The extension of the texture file is not \".xpm\".");
+	else if (!ft_strncmp(file, ".xpm", 4) || !ft_strncmp(&file[i - 1], "/.xpm", 5))
+		print_error("The texture file cannot be opened.");
+	else if (ft_strncmp(&file[i], ".xpm", 4))
 		print_error("The extension of the texture file is not \".xpm\".");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

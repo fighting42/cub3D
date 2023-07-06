@@ -17,6 +17,8 @@ t_data	*init_data(void)
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
+	if (!data)
+		exit(0);
 	data->east = NULL;
 	data->west = NULL;
 	data->south = NULL;

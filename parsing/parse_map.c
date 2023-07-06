@@ -22,6 +22,8 @@ char	**malloc_map(t_map *tmp_map)
 	if (!tmp_map->line)
 		print_error("There is no map value.");
 	map = malloc(sizeof(char *) * (tmp_map->max_h + 2));
+	if (!map)
+		exit(0);
 	line = tmp_map->line;
 	i = 0;
 	while (line)
@@ -59,6 +61,8 @@ t_line	*new_map_line(char *str)
 
 	str = remove_space(str, BACK);
 	new_line = malloc(sizeof(t_line));
+	if (!new_line)
+		exit(0);
 	new_line->str = ft_strdup(str);
 	new_line->next = NULL;
 	return (new_line);
