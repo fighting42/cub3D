@@ -28,12 +28,11 @@ char	**malloc_map(t_map *tmp_map)
 	i = 0;
 	while (line)
 	{
-		map[i] = ft_strndup(line->str, tmp_map->max_w + 2);
+		map[i++] = ft_strndup(line->str, tmp_map->max_w + 2);
 		free(line->str);
 		free_tmp = line;
 		line = line->next;
 		free(free_tmp);
-		i++;
 	}
 	map[i] = NULL;
 	return (map);

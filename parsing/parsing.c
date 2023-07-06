@@ -58,15 +58,15 @@ void	parse_line(char *file, t_data *data, t_map *tmp_map)
 	while (line)
 	{
 		line = get_next_line(fd);
-		if (!line)
-			break ;
-		if (!parse_data(data, line) && !flag)
-			flag = 1;
-		if (flag)
-			parse_map(tmp_map, line);
+		if (line)
+		{
+			if (!parse_data(data, line) && !flag)
+				flag = 1;
+			if (flag)
+				parse_map(tmp_map, line);
+		}
 		free(line);
 	}
-	free(line);
 }
 
 void	parsing(t_info *info, char *file)
