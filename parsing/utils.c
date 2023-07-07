@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:47:04 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 19:27:33 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/07 19:12:37 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strndup(char *str, int len)
 	char	*ret;
 
 	i = -1;
-	ret = malloc(sizeof(char) * len);
+	ret = malloc(sizeof(char) * (len + 2)); // 내가 임의로 len + 2 시킨거니까 확인하고 수정해줭~
 	if (!ret)
 		exit(0);
 	while (++i < (int)ft_strlen(str))

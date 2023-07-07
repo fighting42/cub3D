@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+         #
+#    By: dapark <dapark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 20:25:24 by yejinkim          #+#    #+#              #
-#    Updated: 2023/07/07 00:36:15 by daheepark        ###   ########.fr        #
+#    Updated: 2023/07/07 17:18:35 by dapark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 MLXFLAGS = -L ./mlx -lmlx -framework OpenGL -framework Appkit
 

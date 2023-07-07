@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/07 01:46:03 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/07/07 18:07:00 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@
 # define KEY_RO_R 124
 # define KEY_ESC 53
 # define KEY_EXIT 17
-# define WIDTH 640
-# define HEIGHT 480
-# define TEXWIDTH 64
-# define TEXHEIGHT 64
+# define WIDTH 1920
+# define HEIGHT 1080
+# define TEXWIDTH 900
+# define TEXHEIGHT 900
 # define K_ESC 53
-# define N 0
-# define S 1
-# define E 2
-# define W 3
+# define N 1
+# define S 2
+# define E 3
+# define W 4
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 # define FRONT 1
@@ -53,7 +53,7 @@ typedef struct s_img
 	int		bpp;
 	int		line_size;
 	int		*data;
-	int		tex_buf[64][64];
+	int		tex_buf[TEXWIDTH][TEXHEIGHT];
 }	t_img;
 
 typedef struct s_data
@@ -110,7 +110,7 @@ typedef struct s_info
 	char	**map;
 	char	start_dir;
 	t_data	*data;
-	t_img	img[4];
+	t_img	img[5];
 	void	*mlx;
 	void	*win;
 	double	pos_x;
