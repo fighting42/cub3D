@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/07 18:07:00 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/08 14:51:33 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_img
 	int		bpp;
 	int		line_size;
 	int		*data;
-	int		tex_buf[TEXWIDTH][TEXHEIGHT];
+	int		**tex_buf;
 }	t_img;
 
 typedef struct s_data
@@ -121,11 +121,13 @@ typedef struct s_info
 	double	plane_y;
 	double	movespeed;
 	double	rotspeed;
-	int		buf[WIDTH][HEIGHT];
+	int		**buf;
 }	t_info;
 
 // main.c
 void	print_error(char *str);
+int		red_press(void *value);
+int		main(int argc, char **argv);
 
 // parsing/parsing.c
 void	parsing(t_info *info, char *file);

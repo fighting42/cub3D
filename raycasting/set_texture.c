@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:09:14 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/07 17:43:48 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/08 15:15:47 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	set_texture_util(t_info *info, int dir, char *path)
 	int	j;
 
 	i = 0;
-	info->img[dir].img = mlx_xpm_file_to_image(info->mlx, path, &info->img[dir].width, &info->img[dir].height);
+	info->img[dir].img = mlx_xpm_file_to_image(info->mlx, path, \
+						&info->img[dir].width, &info->img[dir].height);
 	info->img[dir].data = (int *)mlx_get_data_addr(info->img[dir].img, \
 		&info->img[dir].bpp, &info->img[dir].line_size, &info->img[dir].endian);
 	while (i < info->img[dir].height)
@@ -36,6 +37,25 @@ void	set_texture_util(t_info *info, int dir, char *path)
 
 void	set_texture(t_info *info)
 {
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	while (++i < 5)
+		info->img[i].tex_buf = (int **)malloc(sizeof(int *) * TEXWIDTH);
+	i = -1;
+	while (++i < 5)
+	{
+		j = -1;
+		while (++j < TEXWIDTH)
+		{
+			info->img[i].tex_buf[j] = (int *)malloc(sizeof(int) * TEXHEIGHT);
+			k = -1;
+			while (++k < TEXHEIGHT)
+				info->img[i].tex_buf[j][k] = 0;
+		}
+	}
 	set_texture_util(info, N, "./textures/north.xpm");
 	set_texture_util(info, S, "./textures/south.xpm");
 	set_texture_util(info, E, "./textures/east.xpm");

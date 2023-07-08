@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/07 18:05:22 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/08 15:10:26 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	draw_map(t_info *info)
 		j = 0;
 		while (j < WIDTH)
 		{
-			info->img[0].data[WIDTH * j + i] = info->buf[i][j];
+			info->img[0].data[WIDTH * i + j] = info->buf[i][j];
 			j++;
 		}
 		i++;

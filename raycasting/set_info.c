@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/07 00:39:28 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/07/08 14:53:55 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ void	init_buf(t_info *info)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < WIDTH)
 	{
+		info->buf[i] = malloc(sizeof(int) * HEIGHT);
+		j = 0;
 		while (j < HEIGHT)
 		{
 			info->buf[i][j] = 0;
@@ -71,6 +72,7 @@ void	set_info(t_info *info)
 	info->mlx = mlx_init();
 	info->movespeed = 0.15;
 	info->rotspeed = 0.1;
+	info->buf = (int **)malloc(sizeof(int *) * WIDTH);
 	init_buf(info);
 	set_texture(info);
 	if (info->start_dir == 'N' || info->start_dir == 'S')
