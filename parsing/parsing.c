@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 16:29:10 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 18:40:52 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ t_data	*init_data(void)
 	return (data);
 }
 
+t_map	*init_map(void)
+{
+	t_map	*map;
+
+	map = malloc(sizeof(t_map));
+	if (!map)
+		exit(0);
+	map->line = NULL;
+	map->max_h = 0;
+	map->max_w = 0;
+	return (map);
+}
+
 int	open_file(char *file)
 {
 	int	i;
@@ -36,7 +49,8 @@ int	open_file(char *file)
 	i = ft_strlen(file) - 4;
 	if (i < 0)
 		print_error("The file extension is not \".cub\".");
-	else if (!ft_strncmp(file, ".cub", 4) || !ft_strncmp(&file[i - 1], "/.cub", 5))
+	else if (!ft_strncmp(file, ".cub", 4) || \
+		!ft_strncmp(&file[i - 1], "/.cub", 5))
 		print_error("The file cannot be opened.");
 	else if (ft_strncmp(&file[i], ".cub", 4))
 		print_error("The file extension is not \".cub\".");
@@ -75,9 +89,8 @@ void	parsing(t_info *info, char *file)
 	t_map	*tmp_map;
 	char	**map;
 
-	tmp_map = malloc(sizeof(t_map));
-	tmp_map->line = NULL;
 	data = init_data();
+	tmp_map = init_map();
 	parse_line(file, data, tmp_map);
 	map = malloc_map(tmp_map);
 	info->data = check_data(data);

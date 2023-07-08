@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:03 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 17:48:25 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 18:57:18 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ char	**malloc_map(t_map *tmp_map)
 
 	if (!tmp_map->line)
 		print_error("There is no map value.");
-	map = malloc(sizeof(char *) * (tmp_map->max_h + 2));
+	map = malloc(sizeof(char *) * (tmp_map->max_h + 1));
 	if (!map)
 		exit(0);
 	line = tmp_map->line;
 	i = 0;
 	while (line)
 	{
-		map[i++] = ft_strndup(line->str, tmp_map->max_w + 2);
+		map[i++] = ft_strndup(line->str, tmp_map->max_w + 1);
 		free(line->str);
 		free_tmp = line;
 		line = line->next;
@@ -75,7 +75,7 @@ void	add_map_line(t_map *map, char *line)
 	if (!head)
 	{
 		map->line = new_map_line(line);
-		map->max_h = 0;
+		map->max_h++;
 		map->max_w = ft_strlen(line);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:47:04 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 16:33:13 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 18:59:37 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ char	*ft_strndup(char *str, int len)
 	int		i;
 	char	*ret;
 
-	i = -1;
-	ret = malloc(sizeof(char) * (len + 1)); // 내가 임의로 (len + 2)로 바꾼거니까 확인하고 수정해줭~~
+	i = 0;
+	ret = malloc(sizeof(char) * len);
 	if (!ret)
 		exit(0);
-	while (++i < (int)ft_strlen(str))
+	while (i < (int)ft_strlen(str))
+	{
 		ret[i] = str[i];
-	while (i < len)
+		i++;
+	}
+	while (i < len - 1)
 		ret[i++] = ' ';
 	ret[i] = '\0';
 	return (ret);

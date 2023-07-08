@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:45:37 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 19:55:21 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 18:37:56 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	check_xpm(char *file)
 	i = ft_strlen(file) - 4;
 	if (i < 0)
 		print_error("The extension of the texture file is not \".xpm\".");
-	else if (!ft_strncmp(file, ".xpm", 4) || !ft_strncmp(&file[i - 1], "/.xpm", 5))
+	else if (!ft_strncmp(file, ".xpm", 4) || \
+		!ft_strncmp(&file[i - 1], "/.xpm", 5))
 		print_error("The texture file cannot be opened.");
 	else if (ft_strncmp(&file[i], ".xpm", 4))
 		print_error("The extension of the texture file is not \".xpm\".");
@@ -82,5 +83,6 @@ char	**check_map(t_info *info, char **map, t_map *tmp_map)
 	}
 	if (!info->start_dir)
 		print_error("The map does not have a player direction.");
+	free(tmp_map);
 	return (map);
 }

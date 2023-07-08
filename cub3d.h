@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 17:16:30 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 18:40:38 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int		main(int argc, char **argv);
 void	parsing(t_info *info, char *file);
 void	parse_line(char *file, t_data *data, t_map *tmp_map);
 int		open_file(char *file);
+t_map	*init_map(void);
 t_data	*init_data(void);
 // parsing/parse_data.c
 int		parse_data(t_data *data, char *line);
