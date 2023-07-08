@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/08 18:15:25 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:39:20 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, int dir)
 		mapcam->tex_y = (int)mapcam->tex_pos & (TEXHEIGHT - 1);
 		mapcam->tex_pos += mapcam->step;
 		info->buf[mapcam->start_point][i] = \
-			info->img[dir].tex_buf[mapcam->tex_x][mapcam->tex_y]; //x, y ㅎㅘㄱ인
+			info->img[dir].tex_buf[mapcam->tex_y][mapcam->tex_x]; //x, y ㅎㅘㄱ인
 		mapcam->start_point++;
 	}
 }

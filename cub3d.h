@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 18:40:38 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 19:24:14 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ char	*parse_texture(char *var, char *str);
 void	parse_map(t_map *map, char *line);
 void	add_map_line(t_map *map, char *line);
 t_line	*new_map_line(char *line);
-void	set_start_info(t_info *info, char c, int x, int y);
+void	set_start_info(t_info *info, char **map, int y, int x);
 char	**malloc_map(t_map *tmp_map);
 // parsing/check.c
 char	**check_map(t_info *info, char **map, t_map *tmp_map);

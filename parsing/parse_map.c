@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:03 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 18:57:18 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 19:25:12 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,14 @@ char	**malloc_map(t_map *tmp_map)
 	return (map);
 }
 
-void	set_start_info(t_info *info, char c, int x, int y)
+void	set_start_info(t_info *info, char **map, int y, int x)
 {
 	if (info->start_dir)
 		print_error("The player direction is duplicated on the map.");
-	if (c == 'N')
-		info->start_dir = 'N';
-	else if (c == 'S')
-		info->start_dir = 'S';
-	else if (c == 'E')
-		info->start_dir = 'E';
-	else if (c == 'W')
-		info->start_dir = 'W';
+	info->start_dir = map[y][x];
 	info->pos_x = x;
 	info->pos_y = y;
+	map[y][x] = '0';
 }
 
 t_line	*new_map_line(char *str)

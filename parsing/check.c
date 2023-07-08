@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:45:37 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 18:37:56 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 19:23:46 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	**check_map(t_info *info, char **map, t_map *tmp_map)
 				check_wall(map, i, j, flag);
 			if (map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'W' || map[i][j] == 'E')
-				set_start_info(info, map[i][j], i, j);
+				set_start_info(info, map, i, j);
 		}
 	}
 	if (!info->start_dir)
