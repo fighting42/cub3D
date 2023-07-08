@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:03 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 19:38:16 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 16:27:00 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	**malloc_map(t_map *tmp_map)
 	i = 0;
 	while (line)
 	{
+		printf("%s\n", line->str);
 		map[i++] = ft_strndup(line->str, tmp_map->max_w + 2);
 		free(line->str);
 		free_tmp = line;

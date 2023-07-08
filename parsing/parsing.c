@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 18:57:28 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 16:29:10 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,14 @@ void	parse_line(char *file, t_data *data, t_map *tmp_map)
 void	parsing(t_info *info, char *file)
 {
 	t_data	*data;
-	t_map	tmp_map;
+	t_map	*tmp_map;
 	char	**map;
 
+	tmp_map = malloc(sizeof(t_map));
+	tmp_map->line = NULL;
 	data = init_data();
-	parse_line(file, data, &tmp_map);
-	map = malloc_map(&tmp_map);
+	parse_line(file, data, tmp_map);
+	map = malloc_map(tmp_map);
 	info->data = check_data(data);
-	info->map = check_map(info, map, &tmp_map);
+	info->map = check_map(info, map, tmp_map);
 }
