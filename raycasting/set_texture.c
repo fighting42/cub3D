@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:09:14 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/08 15:15:47 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/08 17:15:56 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,8 @@ void	set_texture_util(t_info *info, int dir, char *path)
 
 void	set_texture(t_info *info)
 {
-	int	i;
-	int	j;
-	int	k;
-
-	i = -1;
-	while (++i < 5)
-		info->img[i].tex_buf = (int **)malloc(sizeof(int *) * TEXWIDTH);
-	i = -1;
-	while (++i < 5)
-	{
-		j = -1;
-		while (++j < TEXWIDTH)
-		{
-			info->img[i].tex_buf[j] = (int *)malloc(sizeof(int) * TEXHEIGHT);
-			k = -1;
-			while (++k < TEXHEIGHT)
-				info->img[i].tex_buf[j][k] = 0;
-		}
-	}
-	set_texture_util(info, N, "./textures/north.xpm");
-	set_texture_util(info, S, "./textures/south.xpm");
-	set_texture_util(info, E, "./textures/east.xpm");
-	set_texture_util(info, W, "./textures/west.xpm");
+	set_texture_util(info, N, info->data->north);
+	set_texture_util(info, S, info->data->south);
+	set_texture_util(info, E, info->data->east);
+	set_texture_util(info, W, info->data->west);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 14:51:33 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/08 17:16:30 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define KEY_RO_R 124
 # define KEY_ESC 53
 # define KEY_EXIT 17
-# define WIDTH 1920
-# define HEIGHT 1080
-# define TEXWIDTH 900
-# define TEXHEIGHT 900
+# define WIDTH 640
+# define HEIGHT 480
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
 # define K_ESC 53
 # define N 1
 # define S 2
@@ -53,7 +53,7 @@ typedef struct s_img
 	int		bpp;
 	int		line_size;
 	int		*data;
-	int		**tex_buf;
+	int		tex_buf[64][64];
 }	t_img;
 
 typedef struct s_data
@@ -121,7 +121,7 @@ typedef struct s_info
 	double	plane_y;
 	double	movespeed;
 	double	rotspeed;
-	int		**buf;
+	int		buf[WIDTH][HEIGHT];
 }	t_info;
 
 // main.c
