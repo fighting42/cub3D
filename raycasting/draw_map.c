@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/08 19:39:20 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 20:41:17 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_floor_ceil(t_info *info)
 		j = 0;
 		while (j < WIDTH)
 		{
-			if (i < HEIGHT / 2)
+			if (i > HEIGHT / 2) // 부등호 방향이 반대가 아닌가 싶어서.. 바꿨덩ㅋㅎ
 				info->buf[i][j] = info->data->floor;
 			else
 				info->buf[i][j] = info->data->ceil;
@@ -53,7 +53,7 @@ void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, int dir)
 		mapcam->tex_y = (int)mapcam->tex_pos & (TEXHEIGHT - 1);
 		mapcam->tex_pos += mapcam->step;
 		info->buf[mapcam->start_point][i] = \
-			info->img[dir].tex_buf[mapcam->tex_y][mapcam->tex_x]; //x, y ㅎㅘㄱ인
+			info->img[dir].tex_buf[mapcam->tex_y][mapcam->tex_x]; //x, y ㅎㅘㄱ인  // 원래대로 돌려놈 ㅠㅠ
 		mapcam->start_point++;
 	}
 }

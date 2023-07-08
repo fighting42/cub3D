@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:26:25 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/08 19:37:48 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/08 20:15:41 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	keypress_wd(int keycode, t_info *info)
 {
+	// 여기 함수 x, y 뒤집음ㅜㅠㅠㅜㅜ (info->map[x][y]  ->  info->map[y][x]), if문 조건만 수정! if문 안에는 안건듬!!
 	if (keycode == KEY_D)
 	{
 		if (info->map[(int)(info->pos_y)]
@@ -36,6 +37,7 @@ void	keypress_wd(int keycode, t_info *info)
 
 void	keypress_as(int keycode, t_info *info)
 {
+	// 여기 함수 x, y 뒤집음ㅜㅠㅠㅜㅜ (info->map[x][y]  ->  info->map[y][x]), if문 조건만 수정! if문 안에는 안건듬!!
 	if (keycode == KEY_A)
 	{
 		if (info->map[(int)(info->pos_y)]
