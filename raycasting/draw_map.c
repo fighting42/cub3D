@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/10 20:19:34 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 23:25:11 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, int dir)
 	if (mapcam->side == 1 && mapcam->raydir_y < 0)
 		mapcam->tex_x = TEXWIDTH - mapcam->tex_x - 1;
 	mapcam->step = 1.0 * TEXHEIGHT / mapcam->line_height;
-	mapcam->tex_pos = (mapcam->start_point - HEIGHT
+	mapcam->tex_pos = (mapcam->start_point - HEIGHT \
 			/ 2 + mapcam->line_height / 2) * mapcam->step;
 	while (0 < mapcam->start_point && mapcam->start_point < mapcam->end_point) // 수정 (0 < 조건 추가)
 	{
@@ -72,9 +72,9 @@ void	draw_mapcamera(t_info *info, t_mapcamera *mapcam, int i)
 	else
 	{
 		if (mapcam->raydir_y < 0)
-			dir = S;
-		else
 			dir = N;
+		else
+			dir = S;
 	}
 	draw_map_texture(info, mapcam, i, dir);
 }
@@ -83,19 +83,17 @@ void	draw_map(t_info *info)
 {
 	int	i;
 	int	j;
-	int	*buffer;
 
 	i = 0;
-	buffer = (int *)malloc(sizeof(int) * WIDTH * HEIGHT);
 	while (i < HEIGHT) // 수정
 	{
 		j = 0;
 		while (j < WIDTH) // 수정
 		{
-			buffer[WIDTH * i + j] = info->buf[i][j];
+			info->img[0].data[WIDTH * i + j] = info->buf[i][j];
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(info->mlx, info->win, buffer, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->win, info->img[0].img, 0, 0);
 }

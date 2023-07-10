@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:43 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/10 15:54:43 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 23:36:37 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,24 @@ void	set_moving_dir(t_info *info, t_mapcamera *mapcam)
 void	set_mapcamera(t_info *info, t_mapcamera *mapcam, int i)
 {
 	mapcam->camera_x = 2 * i / (double)WIDTH - 1;
+	mapcam->raydir_x = info->dir_x + mapcam->camera_x * info->plane_x;
+	mapcam->raydir_y = info->dir_y + mapcam->camera_x * info->plane_y;
 	mapcam->map_x = (int)info->pos_x;
 	mapcam->map_y = (int)info->pos_y;
 	mapcam->deltadist_x = fabs(1 / mapcam->raydir_x);
 	mapcam->deltadist_y = fabs(1 / mapcam->raydir_y);
-	mapcam->raydir_x = info->dir_x + mapcam->camera_x * info->plane_x;
-	mapcam->raydir_y = info->dir_y + mapcam->camera_x * info->plane_y;
 	set_moving_dir(info, mapcam);
 	mapcam->hit = 0;
 	wall_x_or_y(info, mapcam);
-	mapcam->line_height = HEIGHT / mapcam->perwalldist;
+	if (mapcam->perwalldist == 0)
+		mapcam->line_height = HEIGHT;
+	else
+		mapcam->line_height = HEIGHT / mapcam->perwalldist;
 	mapcam->start_point = (HEIGHT / 2) - (mapcam->line_height / 2);
 	if (mapcam->start_point < 0)
 		mapcam->start_point = 0;
 	mapcam->end_point = (HEIGHT / 2) + (mapcam->line_height / 2);
-	if (mapcam->end_point == HEIGHT)
+	if (mapcam->end_point >= HEIGHT)
 		mapcam->end_point = HEIGHT - 1;
 }
 
@@ -99,7 +102,7 @@ int	raycasting(t_info *info)
 	{
 		set_mapcamera(info, &mapcam, i);
 		draw_mapcamera(info, &mapcam, i);
-		i++;
+		i++; 
 	}
 	draw_map(info);
 	return (0);

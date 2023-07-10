@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:26:25 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/10 20:19:17 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 23:37:28 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	keypress_as(int keycode, t_info *info)
 
 void	keypress_lr(int keycode, t_info *info, int ori_plane_x, int ori_dir_x)
 {
-	if (keycode == KEY_RO_L)
+	if (keycode == KEY_RO_R)
 	{
 		info->dir_x = info->dir_x * cos(info->rotspeed)
 			- info->dir_y * sin(info->rotspeed);
@@ -69,7 +69,7 @@ void	keypress_lr(int keycode, t_info *info, int ori_plane_x, int ori_dir_x)
 		info->plane_y = ori_plane_x * sin(info->rotspeed)
 			+ info->plane_y * cos(info->rotspeed);
 	}
-	else if (keycode == KEY_RO_R)
+	else if (keycode == KEY_RO_L)
 	{
 		info->dir_x = info->dir_x * cos(-info->rotspeed)
 			- info->dir_y * sin(-info->rotspeed);
@@ -84,17 +84,12 @@ void	keypress_lr(int keycode, t_info *info, int ori_plane_x, int ori_dir_x)
 
 int	key_press(int keycode, t_info *info)
 {
-	int	ori_plane_x;
-	int	ori_dir_x;
-
-	ori_plane_x = info->plane_x;
-	ori_dir_x = info->dir_x;
 	if (keycode == KEY_A || keycode == KEY_S)
 		keypress_as(keycode, info);
 	if (keycode == KEY_D || keycode == KEY_W)
 		keypress_wd(keycode, info);
 	if (keycode == KEY_RO_L || keycode == KEY_RO_R)
-		keypress_lr(keycode, info, ori_plane_x, ori_dir_x);
+		keypress_lr(keycode, info, info->plane_x, info->dir_x);
 	if (keycode == KEY_ESC)
 		exit(0);
 	return (0);
