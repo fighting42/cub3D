@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 20:32:50 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 16:32:54 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_info
 	double	plane_y;
 	double	movespeed;
 	double	rotspeed;
-	int		buf[WIDTH][HEIGHT]; // 여기부터.. 뒤집어야 될듯... buf[HEIGHT][WIDTH]로...ㅎㅎㅎㅋㅋㅋㅎㅎㅋㅋㅋㅋㅋㅋㅋㅋ
+	int		buf[HEIGHT][WIDTH]; // 수정
 }	t_info;
 
 // main.c
