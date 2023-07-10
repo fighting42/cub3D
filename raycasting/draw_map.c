@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/10 16:37:01 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 20:03:03 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,19 @@ void	draw_map(t_info *info)
 {
 	int	i;
 	int	j;
+	int	*buffer;
 
 	i = 0;
+	buffer = (int *)malloc(sizeof(int) * WIDTH * HEIGHT);
 	while (i < HEIGHT) // 수정
 	{
 		j = 0;
 		while (j < WIDTH) // 수정
 		{
-			info->img[0].data[WIDTH * i + j] = info->buf[i][j];
+			buffer[WIDTH * i + j] = info->buf[i][j];
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(info->mlx, info->win, info->img[0].img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->win, buffer, 0, 0);
 }

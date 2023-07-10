@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/10 15:41:08 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 19:34:23 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	start_dir_ns(t_info *info)
 {
 	if (info->start_dir == 'N')
 	{
-		info->dir_x = -1.0;
-		info->dir_y = 0.0;
-		info->plane_x = 0.0;
-		info->plane_y = 0.66;
+		info->dir_x = 0.0;
+		info->dir_y = -1.0;
+		info->plane_x = 0.66;
+		info->plane_y = 0.0;
 	}
 	else if (info->start_dir == 'S')
 	{
-		info->dir_x = 1.0;
-		info->dir_y = 0.0;
-		info->plane_x = 0.0;
-		info->plane_y = -0.66;
+		info->dir_x = 0.0;
+		info->dir_y = 1.0;
+		info->plane_x = -0.66;
+		info->plane_y = 0.0;
 	}
 }
 
@@ -34,17 +34,17 @@ void	start_dir_ew(t_info *info)
 {
 	if (info->start_dir == 'E')
 	{
-		info->dir_x = 0.0;
-		info->dir_y = 1.0;
-		info->plane_x = 0.66;
-		info->plane_y = 0.0;
+		info->dir_x = 1.0;
+		info->dir_y = 0.0;
+		info->plane_x = 0.0;
+		info->plane_y = 0.66;
 	}
 	else if (info->start_dir == 'W')
 	{
-		info->dir_x = 0.0;
-		info->dir_y = -1.0;
-		info->plane_x = -0.66;
-		info->plane_y = 0.0;
+		info->dir_x = -1.0;
+		info->dir_y = 0.0;
+		info->plane_x = 0.0;
+		info->plane_y = -0.66;
 	}
 }
 

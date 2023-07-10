@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:09:14 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/10 16:40:43 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 19:00:45 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	set_texture_util(t_info *info, int dir, char *path)
 		while (j < info->img[dir].width)
 		{
 			info->img[dir].tex_buf[i][j] = \
-				info->img[dir].data[info->img[dir].width * i + j];
-			j++;
+				info->img[dir].data[info->img[dir].height * i + j];
+			j++; 
 		}
 		i++;
 	}

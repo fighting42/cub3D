@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:26:25 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/08 20:15:41 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/10 19:18:00 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	keypress_wd(int keycode, t_info *info)
 	if (keycode == KEY_D)
 	{
 		if (info->map[(int)(info->pos_y)]
-				[(int)(info->pos_x + info->plane_x * info->movespeed)] != '1')
+				[(int)(info->pos_x + info->plane_x * info->movespeed * 5)] != '1')
 			info->pos_x += info->plane_x * info->movespeed;
-		if (info->map[(int)(info->pos_y + info->plane_y * info->movespeed)]
+		if (info->map[(int)(info->pos_y + info->plane_y * info->movespeed * 5)]
 				[(int)(info->pos_x)] != '1')
 			info->pos_y += info->plane_y * info->movespeed;
 	}
