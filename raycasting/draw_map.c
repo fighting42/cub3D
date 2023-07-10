@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/10 20:03:03 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/10 20:19:34 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	draw_mapcamera(t_info *info, t_mapcamera *mapcam, int i)
 	if (mapcam->side == 0)
 	{
 		if (mapcam->raydir_x < 0)
-			dir = E;
-		else
 			dir = W;
+		else
+			dir = E;
 	}
 	else
 	{

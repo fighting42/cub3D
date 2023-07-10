@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/10 19:34:23 by dapark           ###   ########.fr       */
+/*   Updated: 2023/07/10 20:19:44 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	set_info(t_info *info)
 		start_dir_ns(info);
 	else if (info->start_dir == 'W' || info->start_dir == 'E')
 		start_dir_ew(info);
-	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "mlx 42");
+	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
 	info->img[0].img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
 	info->img[0].data = (int *)mlx_get_data_addr(info->img[0].img, \
 			&info->img[0].bpp, &info->img[0].line_size, &info->img[0].endian);
