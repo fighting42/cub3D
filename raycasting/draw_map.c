@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/11 15:43:05 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 18:13:37 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_map_texture(t_info *info, t_mapcamera *mapcam, int i, int dir)
 	mapcam->step = 1.0 * TEXHEIGHT / mapcam->line_height;
 	mapcam->tex_pos = (mapcam->start_point - HEIGHT \
 			/ 2 + mapcam->line_height / 2) * mapcam->step;
-	while (0 < mapcam->start_point && mapcam->start_point < mapcam->end_point)
+	while (mapcam->start_point < mapcam->end_point)
 	{
 		mapcam->tex_y = (int)mapcam->tex_pos & (TEXHEIGHT - 1);
 		mapcam->tex_pos += mapcam->step;
