@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/10 16:32:54 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 14:25:43 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ typedef struct s_mapcamera
 	int		end_point;
 	int		step_x;
 	int		step_y;
-	int		wall_x;
+	double	wall_x;
 	int		tex_x;
 	int		tex_y;
-	int		tex_pos;
+	double	tex_pos;
 	int		hit;
 	int		side;
 	double	step;
