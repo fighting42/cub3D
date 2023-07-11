@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:01:20 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/11 14:25:43 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 15:47:16 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_info
 	double	plane_y;
 	double	movespeed;
 	double	rotspeed;
-	int		buf[HEIGHT][WIDTH]; // 수정
+	int		buf[HEIGHT][WIDTH];
 }	t_info;
 
 // main.c
@@ -172,7 +172,7 @@ void	draw_map(t_info *info);
 // raycasting/keypress.c
 void	keypress_wd(int keycode, t_info *info);
 void	keypress_as(int keycode, t_info *info);
-void	keypress_lr(int keycode, t_info *info, int ori_plane_x, int ori_dir_x);
+void	keypress_lr(int k, t_info *info, double ori_plane_x, double ori_dir_x);
 int		key_press(int keycode, t_info *info);
 // raycasting/set_info.c
 void	start_dir_ns(t_info *info);

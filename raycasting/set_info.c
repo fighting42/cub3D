@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 09:40:04 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/10 20:19:44 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 15:47:01 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	init_buf(t_info *info)
 	int	j;
 
 	i = 0;
-	while (i < HEIGHT) // 수정
+	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < WIDTH) // 수정
+		while (j < WIDTH)
 		{
 			info->buf[i][j] = 0;
 			j++;

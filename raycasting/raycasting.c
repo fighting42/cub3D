@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:43 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/10 23:36:37 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 15:46:48 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	wall_x_or_y(t_info *info, t_mapcamera *mapcam)
 			mapcam->map_y += mapcam->step_y;
 			mapcam->side = 1;
 		}
-		if (info->map[mapcam->map_y][mapcam->map_x] == '1') // 수정
+		if (info->map[mapcam->map_y][mapcam->map_x] == '1')
 			mapcam->hit = 1;
 	}
 	if (mapcam->side == 0)
@@ -102,7 +102,7 @@ int	raycasting(t_info *info)
 	{
 		set_mapcamera(info, &mapcam, i);
 		draw_mapcamera(info, &mapcam, i);
-		i++; 
+		i++;
 	}
 	draw_map(info);
 	return (0);

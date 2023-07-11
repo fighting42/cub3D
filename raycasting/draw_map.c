@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:41:58 by daheepark         #+#    #+#             */
-/*   Updated: 2023/07/11 14:37:15 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 15:43:05 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_floor_ceil(t_info *info)
 		j = 0;
 		while (j < WIDTH)
 		{
-			if (i > HEIGHT / 2) // 부등호 방향 수정
+			if (i > HEIGHT / 2)
 				info->buf[i][j] = info->data->floor;
 			else
 				info->buf[i][j] = info->data->ceil;
@@ -85,10 +85,10 @@ void	draw_map(t_info *info)
 	int	j;
 
 	i = 0;
-	while (i < HEIGHT) // 수정
+	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < WIDTH) // 수정
+		while (j < WIDTH)
 		{
 			info->img[0].data[WIDTH * i + j] = info->buf[i][j];
 			j++;

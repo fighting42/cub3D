@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:03 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 19:25:12 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 15:16:43 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	set_start_info(t_info *info, char **map, int y, int x)
 	if (info->start_dir)
 		print_error("The player direction is duplicated on the map.");
 	info->start_dir = map[y][x];
-	info->pos_x = x;
-	info->pos_y = y;
+	info->pos_x = x + 0.5;
+	info->pos_y = y + 0.5;
 	map[y][x] = '0';
 }
 
