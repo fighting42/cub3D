@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:45:37 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 19:23:46 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 21:46:06 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void	check_xpm(char *file)
 	if (!file)
 		print_error("There are empty elements.");
 	i = ft_strlen(file) - 4;
-	if (i < 0)
-		print_error("The extension of the texture file is not \".xpm\".");
-	else if (!ft_strncmp(file, ".xpm", 4) || \
-		!ft_strncmp(&file[i - 1], "/.xpm", 5))
-		print_error("The texture file cannot be opened.");
-	else if (ft_strncmp(&file[i], ".xpm", 4))
+	if (i < 0 || (!ft_strncmp(file, ".xpm", 4) && i == 0) || \
+		!ft_strncmp(&file[i - 1], "/.xpm", 5) || \
+		ft_strncmp(&file[i], ".xpm", 4))
 		print_error("The extension of the texture file is not \".xpm\".");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

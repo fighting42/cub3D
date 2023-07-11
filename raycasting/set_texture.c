@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:09:14 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/10 21:50:41 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 20:52:43 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	set_texture_util(t_info *info, int dir, char *path)
 	i = 0;
 	info->img[dir].img = mlx_xpm_file_to_image(info->mlx, path, \
 						&info->img[dir].width, &info->img[dir].height);
+	if (!info->img[dir].img)
+		print_error("Invalid texture file.");
 	info->img[dir].data = (int *)mlx_get_data_addr(info->img[dir].img, \
 		&info->img[dir].bpp, &info->img[dir].line_size, &info->img[dir].endian);
 	while (i < info->img[dir].height)

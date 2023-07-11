@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:32:06 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/04 16:33:44 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 21:11:17 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,23 @@ char	*parse_texture(char *var, char *str)
 
 int	parse_color(int var, char *str)
 {
+	int		i;
+	int		cnt;
 	char	*tmp;
 	char	**ret;
 
 	if (var >= 0)
 		print_error("There are duplicate elements.");
+	i = 0;
+	cnt = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			cnt++;
+		i++;
+	}
+	if (cnt != 2)
+		print_error("Invalid RGB format. (Valid format: R,G,B)");
 	tmp = remove_space(&str[1], FRONT);
 	ret = ft_split(tmp, ',');
 	return (rgb_to_int(ret));

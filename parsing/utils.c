@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:47:04 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 18:59:37 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 21:29:01 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ int	ft_atoi_255(char *str)
 			print_error("Invalid RGB value. (Valid range: 0 to 255)");
 		i++;
 	}
-	if (i == 0)
-		print_error("Invalid RGB value. (Valid range: 0 to 255)");
 	tmp = ft_atoi(str);
 	if (!(tmp >= 0 && tmp <= 255))
 		print_error("Invalid RGB value. (Valid range: 0 to 255)");
@@ -83,20 +81,26 @@ int	ft_atoi_255(char *str)
 
 int	rgb_to_int(char **str)
 {
-	int	i;
-	int	tmp;
+	char	*tmp;
+	int		i;
+	int		ret;
 
 	i = 0;
 	while (str[i])
+	{
+		tmp = remove_space(str[i], FRONT);
+		if (!ft_strlen(tmp))
+			print_error("Invalid RGB value.");
 		i++;
+	}
 	if (i != 3)
-		print_error("Invalid RGB format. (Valid format: R, G, B)");
-	tmp = ft_atoi_255(str[0]) << 16;
-	tmp += ft_atoi_255(str[1]) << 8;
-	tmp += ft_atoi_255(str[2]);
+		print_error("Invalid RGB format. (Valid format: R,G,B)");
+	ret = ft_atoi_255(str[0]) << 16;
+	ret += ft_atoi_255(str[1]) << 8;
+	ret += ft_atoi_255(str[2]);
 	i = 0;
 	while (str[i])
 		free(str[i++]);
 	free(str);
-	return (tmp);
+	return (ret);
 }

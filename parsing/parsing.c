@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:27:29 by yejinkim          #+#    #+#             */
-/*   Updated: 2023/07/08 18:40:52 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 21:43:20 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ int	open_file(char *file)
 	int	fd;
 
 	i = ft_strlen(file) - 4;
-	if (i < 0)
-		print_error("The file extension is not \".cub\".");
-	else if (!ft_strncmp(file, ".cub", 4) || \
-		!ft_strncmp(&file[i - 1], "/.cub", 5))
-		print_error("The file cannot be opened.");
-	else if (ft_strncmp(&file[i], ".cub", 4))
+	if (i < 0 || (!ft_strncmp(file, ".cub", 4) && i == 0) || \
+		!ft_strncmp(&file[i - 1], "/.cub", 5) || \
+		ft_strncmp(&file[i], ".cub", 4))
 		print_error("The file extension is not \".cub\".");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

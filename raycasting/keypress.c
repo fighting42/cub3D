@@ -6,7 +6,7 @@
 /*   By: yejinkim <yejinkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:26:25 by dapark            #+#    #+#             */
-/*   Updated: 2023/07/11 19:57:42 by yejinkim         ###   ########seoul.kr  */
+/*   Updated: 2023/07/11 20:58:36 by yejinkim         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ void	keypress_wd(int keycode, t_info *info)
 {
 	if (keycode == KEY_D)
 	{
-		if (info->map[(int)(info->pos_y)][(int)(info->pos_x + \
-			info->plane_x * info->movespeed)] != '1')
+		if (info->map[(int)(info->pos_y)] \
+			[(int)(info->pos_x + info->plane_x * info->movespeed)] != '1')
 			info->pos_x += info->plane_x * info->movespeed;
-		if (info->map[(int)(info->pos_y + \
-			info->plane_y * info->movespeed)][(int)(info->pos_x)] != '1')
+		if (info->map[(int)(info->pos_y + info->plane_y * info->movespeed)] \
+			[(int)(info->pos_x)] != '1')
 			info->pos_y += info->plane_y * info->movespeed;
 	}
 	else if (keycode == KEY_W)
 	{
-		if (info->map[(int)(info->pos_y)][(int)(info->pos_x + \
-			info->dir_x * info->movespeed)] != '1')
+		if (info->map[(int)(info->pos_y)] \
+			[(int)(info->pos_x + info->dir_x * info->movespeed)] != '1')
 			info->pos_x += info->dir_x * info->movespeed;
-		if (info->map[(int)(info->pos_y + \
-			info->dir_y * info->movespeed)][(int)(info->pos_x)] != '1')
+		if (info->map[(int)(info->pos_y + info->dir_y * info->movespeed)] \
+			[(int)(info->pos_x)] != '1')
 			info->pos_y += info->dir_y * info->movespeed;
 	}
 }
@@ -38,20 +38,20 @@ void	keypress_as(int keycode, t_info *info)
 {
 	if (keycode == KEY_A)
 	{
-		if (info->map[(int)(info->pos_y)][(int)(info->pos_x - \
-			info->plane_x * info->movespeed)] != '1')
+		if (info->map[(int)(info->pos_y)] \
+			[(int)(info->pos_x - info->plane_x * info->movespeed)] != '1')
 			info->pos_x -= info->plane_x * info->movespeed;
-		if (info->map[(int)(info->pos_y - \
-			info->plane_y * info->movespeed)][(int)(info->pos_x)] != '1')
+		if (info->map[(int)(info->pos_y - info->plane_y * info->movespeed)] \
+			[(int)(info->pos_x)] != '1')
 			info->pos_y -= info->plane_y * info->movespeed;
 	}
 	else if (keycode == KEY_S)
 	{
-		if (info->map[(int)(info->pos_y)][(int)(info->pos_x - \
-			info->dir_x * info->movespeed)] != '1')
+		if (info->map[(int)(info->pos_y)] \
+			[(int)(info->pos_x - info->dir_x * info->movespeed)] != '1')
 			info->pos_x -= info->dir_x * info->movespeed;
-		if (info->map[(int)(info->pos_y - \
-			info->dir_y * info->movespeed)][(int)(info->pos_x)] != '1')
+		if (info->map[(int)(info->pos_y - info->dir_y * info->movespeed)] \
+			[(int)(info->pos_x)] != '1')
 			info->pos_y -= info->dir_y * info->movespeed;
 	}
 }
