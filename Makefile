@@ -31,26 +31,26 @@ SRCS =  main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-LDIR	=	libft
-
-LIBFT 	=	$(LDIR)/libft.a
-
+LIBFT	=	libft/libft.a
 
 %.o		:	%.c
 			$(CC) $(CFLAGS) -c $< -o $@
 
 all 	:	
-			make -C $(LDIR) 
+			make -C libft
+			make -C mlx
 			make $(NAME)
 
 $(NAME) :	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(MLXFLAGS)
 			
 clean   :	
-			make -C $(LDIR) clean
+			make -C libft clean
+			$(RM) mlx/*.o
 			$(RM) $(OBJS)
 
 fclean  :	clean
+			make -C mlx clean
 			$(RM) $(LIBFT) $(NAME) 
 
 re  :	fclean all
